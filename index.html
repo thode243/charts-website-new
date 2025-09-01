@@ -68,8 +68,48 @@
 </div>
 
 
+<div class="legend">
+  <span><span class="legend-box solid-blue"></span> Call OI</span>
+  <span><span class="legend-box solid-red"></span> Put OI</span>
+  <span><span class="legend-box dotted-blue"></span> Change OI - Call</span>
+  <span><span class="legend-box dotted-red"></span> Change OI - Put</span>
+  <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
+  <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
+</div>
+
+<style>
+.legend {
+  margin: 10px 0 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 14px;
+}
+.legend-box {
+  display: inline-block;
+  width: 25px;
+  height: 3px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.solid-blue { background: blue; }
+.solid-red { background: red; }
+.light-green { background: lightgreen; }
+.light-red { background: pink; }
+
+/* dotted effect */
+.dotted-blue {
+  background: repeating-linear-gradient(to right, blue 0, blue 3px, transparent 3px, transparent 6px);
+}
+.dotted-red {
+  background: repeating-linear-gradient(to right, red 0, red 3px, transparent 3px, transparent 6px);
+}
+</style>
+  
 <div id="chart1" class="tabcontent">
   <h2>OI-CCOI Chart</h2>
+
+  
 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=697460776&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=49367432&format=interactive"></iframe>
@@ -266,6 +306,7 @@ document.getElementById("defaultOpen").click();
 
 </body>
 </html>
+
 
 
 
