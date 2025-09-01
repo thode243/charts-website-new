@@ -107,10 +107,7 @@
       height: 450px;
     }
 
-     #chart4 iframe {
-    width: 1000px;   /* increase width */
-    height: 800px;   /* increase height */
-  }
+     
   </style>
 </head>
 <body>
@@ -320,20 +317,26 @@
 </div>
 
   
-  <div id="chart4" class="tabcontent">
+  
+  <!-- Chart 4 -->
+<div id="chart4" class="tabcontent">
   <h2>OI-Amount Chart</h2>
   <div class="chart-grid">
     <iframe 
-  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=149799407&format=interactive"
-  class="chart4-frame">
-</iframe>
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=149799407&format=interactive"
+      class="oi-amount-frame">
+    </iframe>
   </div>
 </div>
 
-  <iframe 
-  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=149799407&format=interactive"
-  class="chart4-frame">
-</iframe>
+<style>
+/* Make only OI-Amount Chart iframe bigger */
+#chart4 .oi-amount-frame {
+  width: 1200px;   /* much wider */
+  height: 900px;   /* much taller */
+  border: none;
+}
+</style>
 
 
 <!-- Refresh controls -->
@@ -388,6 +391,7 @@ setRefreshInterval(); // start with 30s by default
 
 </body>
 </html>
+
 
 
 
