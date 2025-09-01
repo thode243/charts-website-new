@@ -106,16 +106,15 @@
       width: 550px;
       height: 450px;
     }
-    /* Chart grid1 */
-    .chart-grid1 {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 15px;
-    }
-    .chart-grid1 iframe {
-      width: 2400px;
-      height: 900px;
-    }
+    /* Full-width single chart for OI-Amount */
+#chart4 .oi-amount-frame {
+  width: 100%;       /* take 100% of container */
+  max-width: 1600px; /* optional: cap it if screen is huge */
+  height: 600px;     /* adjust as needed */
+  border: none;
+  margin: 0 auto;    /* center it */
+  display: block;
+}
 
      
   </style>
@@ -328,25 +327,16 @@
 
   
   
-  <!-- Chart 4 -->
+<!-- Chart 4 -->
 <div id="chart4" class="tabcontent">
   <h2>OI-Amount Chart</h2>
-  <div class="chart-grid1">
-    <iframe 
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=149799407&format=interactive"
-      class="oi-amount-frame">
-    </iframe>
-  </div>
+  <iframe 
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=149799407&format=interactive"
+    class="oi-amount-frame">
+  </iframe>
 </div>
-
-<style>
-/* Make only OI-Amount Chart iframe bigger */
-#chart4 .oi-amount-frame {
-  width: 2400px;   /* much wider */
-  height: 900px;   /* much taller */
-  border: none;
-}
-</style>
+      
+     
 
 
 <!-- Refresh controls -->
@@ -401,6 +391,7 @@ setRefreshInterval(); // start with 30s by default
 
 </body>
 </html>
+
 
 
 
