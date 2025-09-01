@@ -55,64 +55,81 @@
       border: none;
       border-radius: 10px;
     }
+    /* Sticky consolidated charts */
+    .sticky-charts {
+      display: flex;
+      gap: 10px;
+      background: white;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .sticky-charts iframe {
+      width: 300px;
+      height: 200px;
+      border: none;
+    }
+    /* Legend styles */
+    .legend {
+      margin: 10px 0 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      font-size: 14px;
+    }
+    .legend-box {
+      display: inline-block;
+      width: 25px;
+      height: 3px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .solid-blue { background: blue; }
+    .solid-red { background: red; }
+    .light-green { background: lightgreen; }
+    .light-red { background: pink; }
+    .dotted-blue {
+      background: repeating-linear-gradient(to right, blue 0, blue 3px, transparent 3px, transparent 6px);
+    }
+    .dotted-red {
+      background: repeating-linear-gradient(to right, red 0, red 3px, transparent 3px, transparent 6px);
+    }
+    /* Chart grid */
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+    }
+    .chart-grid iframe {
+      width: 100%;
+      height: 250px;
+    }
   </style>
 </head>
 <body>
 
 <h1>Trend Charts</h1>
 
+<!-- ✅ Consolidated charts always visible (sticky row) -->
+<div class="sticky-charts">
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=656959693&format=interactive"></iframe>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=562066817&format=interactive"></iframe>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=111169045&format=interactive"></iframe>
+   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=2120533255&format=interactive"></iframe>
+</div>
+
+<!-- Tabs -->
 <div class="tab">
   <button class="tablinks" onclick="openChart(event, 'chart1')" id="defaultOpen">OI-CCOI</button>
   <button class="tablinks" onclick="openChart(event, 'chart2')">LTP VWAP diff-Amount chart</button>
   <button class="tablinks" onclick="openChart(event, 'chart3')">Chng OI-VWAP diff Chart</button>
-   <button class="tablinks" onclick="openChart(event, 'chart4')">Consolidated Charts</button>
 </div>
 
-<style>
-.legend {
-  margin: 10px 0 20px 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  font-size: 14px;
-}
-.legend-box {
-  display: inline-block;
-  width: 25px;
-  height: 3px;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-.solid-blue { background: blue; }
-.solid-red { background: red; }
-.light-green { background: lightgreen; }
-.light-red { background: pink; }
-
-/* dotted effect */
-.dotted-blue {
-  background: repeating-linear-gradient(to right, blue 0, blue 3px, transparent 3px, transparent 6px);
-}
-.dotted-red {
-  background: repeating-linear-gradient(to right, red 0, red 3px, transparent 3px, transparent 6px);
-}
-</style>
-  
-<div id="chart4" class="tabcontent">
-  <h2>Consolidated Charts</h2>
-</div>
-
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=656959693&format=interactive"></iframe>
-  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=562066817&format=interactive"></iframe>
-  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=111169045&format=interactive"></iframe>
-   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=2120533255&format=interactive"></iframe>
-
-  </div>
-  
-  
+<!-- Chart 1 -->
 <div id="chart1" class="tabcontent">
   <h2>OI-CCOI Chart</h2>
-
-  <!-- 👇 Legend only for chart1 -->
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Call OI</span>
     <span><span class="legend-box solid-red"></span> Put OI</span>
@@ -121,8 +138,8 @@
     <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
     <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
   </div>
-
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=697460776&format=interactive"></iframe>
+  <div class="chart-grid">
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=697460776&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=49367432&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=908267142&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1318108840&format=interactive"></iframe>
@@ -168,15 +185,14 @@
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=833301295&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1394251883&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=838165357&format=interactive"></iframe>
+  </div>
+</div>
 
-
-</div> 
-
-
+<!-- Chart 2 -->
 <div id="chart2" class="tabcontent">
-  <h2>LTP VWAP diff-Amount chart</h2>
-
-  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1609303275&format=interactive"></iframe>
+  <h2>LTP VWAP diff-Amount Chart</h2>
+  <div class="chart-grid">
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1609303275&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=2030724389&format=interactive"></iframe>
   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=2137636012&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1306514441&format=interactive"></iframe>
@@ -231,14 +247,13 @@
   
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1815971458&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1938780248&format=interactive"></iframe>
-
-
+  </div>
 </div>
 
-  <div id="chart3" class="tabcontent">
+<!-- Chart 3 -->
+<div id="chart3" class="tabcontent">
   <h2>Chng OI-VWAP diff Chart</h2>
-    
-
+  <div class="chart-grid">
     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1292845198&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1901127974&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=19577404&format=interactive"></iframe>
@@ -294,11 +309,24 @@
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=624946410&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=822447981&format=interactive"></iframe>
 
+  </div>
+</div>
 
+<!-- Refresh controls -->
+<div style="text-align:center; margin:20px;">
+  <button onclick="refreshCharts()">🔄 Refresh Charts</button>
+  <label for="refreshInterval">Auto-refresh: </label>
+  <select id="refreshInterval" onchange="setRefreshInterval()">
+    <option value="0">Off</option>
+    <option value="10000">10s</option>
+    <option value="20000">20s</option>
+    <option value="30000" selected>30s</option>
+    <option value="60000">60s</option>
+  </select>
 </div>
 
 <script>
-function openChart(evt, chartId) {
+function openChart(evt, chartName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -308,22 +336,31 @@ function openChart(evt, chartId) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(chartId).style.display = "block";
+  document.getElementById(chartName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-// Open the first tab by default
+
+// Auto/manual refresh
+function refreshCharts() {
+  const iframes = document.querySelectorAll("iframe");
+  iframes.forEach(iframe => {
+    iframe.src = iframe.src;
+  });
+}
+
+let refreshTimer;
+function setRefreshInterval() {
+  clearInterval(refreshTimer);
+  const val = document.getElementById("refreshInterval").value;
+  if (val > 0) {
+    refreshTimer = setInterval(refreshCharts, val);
+  }
+}
+
+// Open default tab
 document.getElementById("defaultOpen").click();
+setRefreshInterval(); // start with 30s by default
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
