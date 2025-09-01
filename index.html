@@ -65,6 +65,7 @@
   <button class="tablinks" onclick="openChart(event, 'chart1')" id="defaultOpen">OI-CCOI</button>
   <button class="tablinks" onclick="openChart(event, 'chart2')">LTP VWAP diff-Amount chart</button>
   <button class="tablinks" onclick="openChart(event, 'chart3')">Chng OI-VWAP diff Chart</button>
+   <button class="tablinks" onclick="openChart(event, 'chart4')">Consolidated Charts</button>
 </div>
 
 <style>
@@ -95,6 +96,15 @@
   background: repeating-linear-gradient(to right, red 0, red 3px, transparent 3px, transparent 6px);
 }
 </style>
+  
+<div id="chart4" class="tabcontent">
+  <h2>Consolidated Charts</h2>
+</div>
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=656959693&format=interactive"></iframe>
+
+  </div>
+  
   
 <div id="chart1" class="tabcontent">
   <h2>OI-CCOI Chart</h2>
@@ -304,6 +314,7 @@ document.getElementById("defaultOpen").click();
 
 </body>
 </html>
+
 
 
 
