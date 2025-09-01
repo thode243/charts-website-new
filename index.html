@@ -102,6 +102,13 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 15px;
     }
+
+    /* Chart grid1 */
+    .chart-grid1 {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+    }
     .chart-grid iframe {
       width: 550px;
       height: 450px;
@@ -321,7 +328,7 @@
   <!-- Chart 4 -->
 <div id="chart4" class="tabcontent">
   <h2>OI-Amount Chart</h2>
-  <div class="chart-grid">
+  <div class="chart-grid1">
     <iframe 
       src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=149799407&format=interactive"
       class="oi-amount-frame">
@@ -391,6 +398,7 @@ setRefreshInterval(); // start with 30s by default
 
 </body>
 </html>
+
 
 
 
