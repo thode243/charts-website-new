@@ -411,6 +411,70 @@
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+  function openChart(evt, chartName) {
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    const tablinks = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    document.getElementById(chartName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  function refreshCharts() {
+    const iframes = document.querySelectorAll("iframe");
+    iframes.forEach(iframe => {
+      iframe.src = iframe.src;
+    });
+    displayLastUpdateTime();
+  }
+
+  let refreshTimer;
+  function setRefreshInterval() {
+    clearInterval(refreshTimer);
+    const val = document.getElementById("refreshInterval").value;
+    if (val > 0) {
+      refreshTimer = setInterval(refreshCharts, val);
+    }
+  }
+
+  function displayLastUpdateTime() {
+    const currentDate = new Date();
+    const options = {
+      weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    };
+    const formattedTime = currentDate.toLocaleString('en-IN', options);
+    document.getElementById("lastUpdateTime").innerText = `Last updated on: ${formattedTime}`;
+  }
+
+  function toggleChart(chartId) {
+    const iframe = document.getElementById(chartId + 'Iframe');
+    const checkbox = document.getElementById(chartId);
+    iframe.style.display = checkbox.checked ? 'block' : 'none';
+  }
+
+  // Initialize on load
+  document.getElementById("defaultOpen").click();
+  setRefreshInterval();
+  displayLastUpdateTime();
+
+  // Make functions globally available if needed
+  window.openChart = openChart;
+  window.setRefreshInterval = setRefreshInterval;
+  window.toggleChart = toggleChart;
+});
+</script>
+<!---
+
+  
+<script>
 function openChart(evt, chartName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -431,6 +495,7 @@ function refreshCharts() {
   iframes.forEach(iframe => {
     iframe.src = iframe.src;
   });
+  displayLastUpdateTime(); // <- add this line
 }
 
 let refreshTimer;
@@ -469,28 +534,7 @@ setRefreshInterval(); // start with 30s by default
     // Call the function when the page loads
     displayLastUpdateTime();
   </script>
-
+-->
+  
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
