@@ -320,8 +320,17 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById(chartName).style.display = "block";
     evt.currentTarget.className += " active";
   }
+function isMarketOpen() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    // Market hours: 09:00 to 15:30
+    return !(hours < 9 || (hours === 15 && minutes > 30) || hours > 15);
+  }
 
+  
   function refreshCharts() {
+    if (!isMarketOpen()) return; // Skip outside market hours
     const iframes = document.querySelectorAll("iframe");
     iframes.forEach(iframe => {
       iframe.src = iframe.src; // reload iframe
@@ -361,3 +370,4 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </body>
 </html>
+
