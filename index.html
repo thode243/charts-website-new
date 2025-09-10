@@ -152,6 +152,7 @@
   <button class="tablinks" onclick="openChart(event, 'chart5')">LTP_OI</button>
   <button class="tablinks" onclick="openChart(event, 'chart6')">Data</button>
    <button class="tablinks" onclick="openChart(event, 'chart7')">Stocks</button>
+  <button class="tablinks" onclick="openChart(event, 'chart8')">Raw Data</button>
   </div>
 
 <!-- ✅ Chart 1 -->
@@ -320,6 +321,16 @@
   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=1970058116&single=true" class="oi-amount-frame"></iframe>
 </div>
 
+<!-- ✅ Chart 8 -->
+<div id="chart8" class="tabcontent">
+  <h2>Raw Data</h2>
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbxgoclj1NnkwVBbe5CK5s1K245t5ZuNmcwU0qWaEnIqKFp9QfPSkz26GD5OM3ij7cb2/exec"
+    class="oi-amount-frame">
+  </iframe>
+</div>
+
+  
   <!-- ✅ Chart 7 -->
 <div id="chart7" class="tabcontent">
   <h2>Stocks</h2>
@@ -424,6 +435,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
