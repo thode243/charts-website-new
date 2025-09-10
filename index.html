@@ -325,25 +325,8 @@
 <!-- ✅ Chart 8 -->
 <div id="chart8" class="tabcontent">
   <h2>Raw Data</h2>
-  <table id="data-table" border="1"></table>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=42275942&single=true" class="oi-amount-frame"></iframe>
 </div>
-
-<script>
-  fetch("https://script.google.com/macros/s/AKfycbwDXi8AgPTRh5yqus1MsoZITET8ISHjag_m0inewmHca4UwyerMCZgX57A8L0EAtsqZ/exec")
-    .then(res => res.json())
-    .then(data => {
-      const table = document.getElementById("data-table");
-      data.forEach(row => {
-        let tr = document.createElement("tr");
-        row.forEach(cell => {
-          let td = document.createElement("td");
-          td.textContent = cell;
-          tr.appendChild(td);
-        });
-        table.appendChild(tr);
-      });
-    });
-</script>
 
   
   <!-- ✅ Chart 7 -->
@@ -450,6 +433,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
