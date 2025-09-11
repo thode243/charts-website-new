@@ -164,6 +164,7 @@
   <button class="tablinks" onclick="openChart(event, 'chart6')">Data</button>
    <button class="tablinks" onclick="openChart(event, 'chart7')">Stocks</button>
   <button class="tablinks" onclick="openChart(event, 'chart8')">Raw Data</button>
+  <button class="tablinks" onclick="openChart(event, 'chart9')">OI-CCOI-VWAP Diff Chart1</button>
   </div>
 
 <!-- ✅ Chart 1 -->
@@ -359,6 +360,24 @@
   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubhtml?gid=1037771693&amp;single=true&amp;widget=true&amp;headers=false" class="oi-amount-frame"></iframe>
 </div>
 
+  <!-- ✅ Chart 9 -->
+<div id="chart1" class="tabcontent">
+  <h2>OI-CCOI-VWAP Diff Chart</h2>
+  <div class="legend">
+    <span><span class="legend-box solid-blue"></span> Call OI</span>
+    <span><span class="legend-box solid-red"></span> Put OI</span>
+    <span><span class="legend-box dotted-blue"></span> Change OI - Call</span>
+    <span><span class="legend-box dotted-red"></span> Change OI - Put</span>
+    <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
+    <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
+  </div>
+  <div class="chart-grid">
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=575746495&amp;format=interactive"></iframe>
+    
+  </div>
+</div>
+
 <script>
 function openChart(evt, chartName) {
   var i, tabcontent, tablinks;
@@ -457,6 +476,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
