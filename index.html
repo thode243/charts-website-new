@@ -189,6 +189,24 @@
     <label><input type="checkbox" value="strike2" onchange="toggleChart(this)"> 24150</label>
     <label><input type="checkbox" value="strike3" onchange="toggleChart(this)"> 24200</label>
 
+  <div id="checkboxes">
+    <label><input type="checkbox" onchange="toggleChart('strike24000')"> 24000</label>
+    <label><input type="checkbox" onchange="toggleChart('strike24050')"> 24050</label>
+    <label><input type="checkbox" onchange="toggleChart('strike24100')"> 24100</label>
+    <label><input type="checkbox" onchange="toggleChart('strike24150')"> 24150</label>
+    <label><input type="checkbox" onchange="toggleChart('strike24200')"> 24200</label>
+    <!-- keep adding until 26000 
+  </div>
+
+  <div id="charts">
+    <iframe id="strike24000" src="https://docs.google.com/spreadsheets/d/e/...&oid=111&format=interactive" style="display:none;"></iframe>
+    <iframe id="strike24050" src="https://docs.google.com/spreadsheets/d/e/...&oid=112&format=interactive" style="display:none;"></iframe>
+    <iframe id="strike24100" src="https://docs.google.com/spreadsheets/d/e/...&oid=113&format=interactive" style="display:none;"></iframe>
+    <iframe id="strike24150" src="https://docs.google.com/spreadsheets/d/e/...&oid=114&format=interactive" style="display:none;"></iframe>
+    <iframe id="strike24200" src="https://docs.google.com/spreadsheets/d/e/...&oid=115&format=interactive" style="display:none;"></iframe>
+    <!-- keep adding for all strike prices 
+  </div>
+
       </div>
   -->
 
@@ -606,6 +624,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
