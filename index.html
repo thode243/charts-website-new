@@ -277,7 +277,13 @@
   </div>
 </div>
   
-
+<script>
+function toggleChart(id) {
+  let chart = document.getElementById(id);
+  let checkbox = document.getElementById("cb-" + id);
+  chart.style.display = checkbox.checked ? "block" : "none";
+}
+</script>
 
 
 <!-- ✅ Chart 2 -->
@@ -571,12 +577,6 @@ function isMarketOpen() {
   }
   
 
-function toggleChart(id) {
-  let chart = document.getElementById(id);
-  let checkbox = document.getElementById("cb-" + id);
-  chart.style.display = checkbox.checked ? "block" : "none";
-}
-
 
   // ✅ Initialize on load
   document.getElementById("defaultOpen").click();
@@ -591,6 +591,7 @@ function toggleChart(id) {
 </script>
 </body>
 </html>
+
 
 
 
