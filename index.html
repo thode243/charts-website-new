@@ -173,6 +173,7 @@
  <!-- ✅ Chart 1 -->
 <div id="chart1" class="tabcontent">
   <h2>OI-CCOI-VWAP Diff Chart</h2>
+  
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Call OI</span>
     <span><span class="legend-box solid-red"></span> Put OI</span>
@@ -181,7 +182,22 @@
     <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
     <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
   </div>
+
+<!-- ✅ Checkboxes for strike prices -->
+  <div class="checkboxes">
+    <label><input type="checkbox" value="strike1" onchange="toggleChart(this)"> 24100</label>
+    <label><input type="checkbox" value="strike2" onchange="toggleChart(this)"> 24150</label>
+    <label><input type="checkbox" value="strike3" onchange="toggleChart(this)"> 24200</label>
+  </div>
+  
   <div class="chart-grid">
+
+        <iframe id="strike1" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=803193799&amp;format=interactive"></iframe>
+        <iframe id="strike1" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1774106736&amp;format=interactive"></iframe>
+
+      <iframe id="strike1" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=706793629&amp;format=interactive"></iframe>
+
+
     <!--
 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=803193799&amp;format=interactive"></iframe>
@@ -520,6 +536,15 @@ function isMarketOpen() {
     const formattedTime = currentDate.toLocaleString('en-IN', options);
     document.getElementById("lastUpdateTime").innerText = `Last updated on: ${formattedTime}`;
   }
+  
+  function toggleChart(checkbox) {
+  var chart = document.getElementById(checkbox.value);
+  if (checkbox.checked) {
+    chart.style.display = "block";
+  } else {
+    chart.style.display = "none";
+  }
+}
 
   // ✅ Initialize on load
   document.getElementById("defaultOpen").click();
@@ -534,6 +559,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
