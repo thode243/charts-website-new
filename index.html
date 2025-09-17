@@ -188,9 +188,41 @@
     <label><input type="checkbox" value="strike1" onchange="toggleChart(this)"> 24100</label>
     <label><input type="checkbox" value="strike2" onchange="toggleChart(this)"> 24150</label>
     <label><input type="checkbox" value="strike3" onchange="toggleChart(this)"> 24200</label>
-  </div>
-  
+
+      </div>
   <div class="chart-grid">
+
+<!-- ✅ Strike 24100 -->
+<label>
+  <input type="checkbox" id="cb-strike24100" onchange="toggleChart('strike24100')">
+  24100
+</label>
+<iframe id="strike24100"
+  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=803193799&amp;format=interactive"></iframe>
+
+<!-- ✅ Strike 24150 -->
+<label>
+  <input type="checkbox" id="cb-strike24150" onchange="toggleChart('strike24150')">
+  24150
+</label>
+<iframe id="strike24150"
+  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1774106736&amp;format=interactive"></iframe>
+
+<!-- ✅ Strike 24200 -->
+<label>
+  <input type="checkbox" id="cb-strike24200" onchange="toggleChart('strike24200')">
+  24200
+</label>
+<iframe id="strike24200"
+  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=706793629&amp;format=interactive"></iframe>
+
+
+
+
+
+
+    <!--
+  
 
         <iframe id="strike1" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=803193799&amp;format=interactive"></iframe>
         <iframe id="strike1" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1774106736&amp;format=interactive"></iframe>
@@ -198,7 +230,7 @@
       <iframe id="strike1" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=706793629&amp;format=interactive"></iframe>
 
 
-    <!--
+  
 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=803193799&amp;format=interactive"></iframe>
         <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1774106736&amp;format=interactive"></iframe>
@@ -537,14 +569,13 @@ function isMarketOpen() {
     document.getElementById("lastUpdateTime").innerText = `Last updated on: ${formattedTime}`;
   }
   
-  function toggleChart(checkbox) {
-  var chart = document.getElementById(checkbox.value);
-  if (checkbox.checked) {
-    chart.style.display = "block";
-  } else {
-    chart.style.display = "none";
-  }
+
+function toggleChart(id) {
+  let chart = document.getElementById(id);
+  let checkbox = document.getElementById("cb-" + id);
+  chart.style.display = checkbox.checked ? "block" : "none";
 }
+
 
   // ✅ Initialize on load
   document.getElementById("defaultOpen").click();
@@ -559,6 +590,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
