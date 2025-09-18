@@ -135,6 +135,10 @@
   border: none;
   overflow: hidden;  /* removes internal scroll */
 }
+    .checkboxes label {
+    margin-right: 12px;
+    font-size: 14px;
+  }
     
   </style>
 </head>
@@ -169,11 +173,11 @@
   <button class="tablinks" onclick="openChart(event, 'chart9')">OI-CCOI-VWAP Diff Chart1</button>
   </div>
 
-
- <!-- ✅ Chart 1 -->
+<!-- ✅ Chart 1 -->
 <div id="chart1" class="tabcontent">
   <h2>OI-CCOI-VWAP Diff Chart</h2>
   
+  <!-- ✅ Legend -->
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Call OI</span>
     <span><span class="legend-box solid-red"></span> Put OI</span>
@@ -183,212 +187,84 @@
     <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
   </div>
 
-<!-- ✅ Checkboxes for strike prices -->
-  <!--<div class="checkboxes">
-    <label><input type="checkbox" value="strike1" onchange="toggleChart(this)"> 24100</label>
-    <label><input type="checkbox" value="strike2" onchange="toggleChart(this)"> 24150</label>
-    <label><input type="checkbox" value="strike3" onchange="toggleChart(this)"> 24200</label>
+  <!-- ✅ Auto checkbox panel -->
+  <div id="checkboxes" class="checkboxes" style="margin-bottom:15px;"></div>
 
-  <div id="checkboxes">
-    <label><input type="checkbox" onchange="toggleChart('strike24000')"> 24000</label>
-    <label><input type="checkbox" onchange="toggleChart('strike24050')"> 24050</label>
-    <label><input type="checkbox" onchange="toggleChart('strike24100')"> 24100</label>
-    <label><input type="checkbox" onchange="toggleChart('strike24150')"> 24150</label>
-    <label><input type="checkbox" onchange="toggleChart('strike24200')"> 24200</label>
-    <!-- keep adding until 26000 
-  </div>
-
-  <div id="charts">
-    <iframe id="strike24000" src="https://docs.google.com/spreadsheets/d/e/...&oid=111&format=interactive" style="display:none;"></iframe>
-    <iframe id="strike24050" src="https://docs.google.com/spreadsheets/d/e/...&oid=112&format=interactive" style="display:none;"></iframe>
-    <iframe id="strike24100" src="https://docs.google.com/spreadsheets/d/e/...&oid=113&format=interactive" style="display:none;"></iframe>
-    <iframe id="strike24150" src="https://docs.google.com/spreadsheets/d/e/...&oid=114&format=interactive" style="display:none;"></iframe>
-    <iframe id="strike24200" src="https://docs.google.com/spreadsheets/d/e/...&oid=115&format=interactive" style="display:none;"></iframe>
-    <!-- keep adding for all strike prices 
-  </div>
-
-      </div>
-  -->
-
-    <!-- ✅ Checkboxes control panel -->
-  <div class="checkboxes" style="margin-bottom:15px;">
-    <label><input type="checkbox" id="cb-strike24100" onchange="toggleChart('strike24100')"> 24100</label>
-    <label><input type="checkbox" id="cb-strike24150" onchange="toggleChart('strike24150')"> 24150</label>
-    <label><input type="checkbox" id="cb-strike24200" onchange="toggleChart('strike24200')"> 24200</label>
-    
-     <label><input type="checkbox" id="cb-strike24250" onchange="toggleChart('strike24250')"> 24250</label>
-    <label><input type="checkbox" id="cb-strike24300" onchange="toggleChart('strike24300')"> 24300</label>
-    <label><input type="checkbox" id="cb-strike24350" onchange="toggleChart('strike24350')"> 24350</label>
-    
-     <label><input type="checkbox" id="cb-strike24400" onchange="toggleChart('strike24400')"> 24400</label>
-    <label><input type="checkbox" id="cb-strike24450" onchange="toggleChart('strike24450')"> 24450</label>
-    <label><input type="checkbox" id="cb-strike24500" onchange="toggleChart('strike24500')"> 24500</label>
-    
-     <label><input type="checkbox" id="cb-strike24550" onchange="toggleChart('strike24550')"> 24550</label>
-    <label><input type="checkbox" id="cb-strike24600" onchange="toggleChart('strike24600')"> 24600</label>
-    <label><input type="checkbox" id="cb-strike24650" onchange="toggleChart('strike24650')"> 24650</label>
-    
-     <label><input type="checkbox" id="cb-strike24700" onchange="toggleChart('strike24700')"> 24700</label>
-    <label><input type="checkbox" id="cb-strike24750" onchange="toggleChart('strike24750')"> 24750</label>
-    <label><input type="checkbox" id="cb-strike24800" onchange="toggleChart('strike24800')"> 24800</label>
-    
-     <label><input type="checkbox" id="cb-strike24850" onchange="toggleChart('strike24850')"> 24850</label>
-    <label><input type="checkbox" id="cb-strike24900" onchange="toggleChart('strike24900')"> 24900</label>
-    <label><input type="checkbox" id="cb-strike24950" onchange="toggleChart('strike24950')"> 24950</label>
-    
-     <label><input type="checkbox" id="cb-strike25000" onchange="toggleChart('strike25000')"> 25000</label>
-    <label><input type="checkbox" id="cb-strike25050" onchange="toggleChart('strike25050')"> 25050</label>
-    <label><input type="checkbox" id="cb-strike25100" onchange="toggleChart('strike25100')"> 25100</label>
-    
-       <label><input type="checkbox" id="cb-strike25150" onchange="toggleChart('strike25150')"> 25150</label>
-    <label><input type="checkbox" id="cb-strike25200" onchange="toggleChart('strike25200')"> 25200</label>
-    <label><input type="checkbox" id="cb-strike25250" onchange="toggleChart('strike25250')"> 25250</label>
-
-         <label><input type="checkbox" id="cb-strike25300" onchange="toggleChart('strike25300')"> 25300</label>
-    <label><input type="checkbox" id="cb-strike25350" onchange="toggleChart('strike25350')"> 25350</label>
-    <label><input type="checkbox" id="cb-strike25400" onchange="toggleChart('strike25400')"> 25400</label>
-
-    <label><input type="checkbox" id="cb-strike25450" onchange="toggleChart('strike25450')"> 25450</label>
-    <label><input type="checkbox" id="cb-strike25500" onchange="toggleChart('strike25500')"> 25500</label>
-    <label><input type="checkbox" id="cb-strike25550" onchange="toggleChart('strike25550')"> 25550</label>
-
-     <label><input type="checkbox" id="cb-strike25600" onchange="toggleChart('strike25600')"> 25600</label>
-    <label><input type="checkbox" id="cb-strike25650" onchange="toggleChart('strike25650')"> 25650</label>
-    <label><input type="checkbox" id="cb-strike25700" onchange="toggleChart('strike25700')"> 25700</label>
-
-
-    
-  </div>
-
-  
-  <div class="chart-grid">
-
-<!-- ✅ Strike 24100 -->
-    <!-- 
-<label>
-  <input type="checkbox" id="cb-strike24100" onchange="toggleChart('strike24100')">
-  24100
-</label>
-    -->
-<iframe id="strike24100"
-  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=803193799&amp;format=interactive"></iframe>
-
-<!-- ✅ Strike 24150 -->
-     <!-- 
-<label>
-  <input type="checkbox" id="cb-strike24150" onchange="toggleChart('strike24150')">
-  24150
-</label>
-    -->
-<iframe id="strike24150"
-  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1774106736&amp;format=interactive"></iframe>
-
-<!-- ✅ Strike 24200 -->
-        <!-- 
-<label>
-  <input type="checkbox" id="cb-strike24200" onchange="toggleChart('strike24200')">
-  24200
-</label>
-    -->
-<iframe id="strike24200"
-  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=706793629&amp;format=interactive"></iframe>
-
-
-<!-- ✅ Strike 24250 -->
-    <!-- 
-<label>
-  <input type="checkbox" id="cb-strike24100" onchange="toggleChart('strike24100')">
-  24100
-</label>
-    -->
-<iframe id="strike24250"
-  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=803193799&amp;format=interactive"></iframe>
-
-<!-- ✅ Strike 24300 -->
-     <!-- 
-<label>
-  <input type="checkbox" id="cb-strike24150" onchange="toggleChart('strike24150')">
-  24150
-</label>
-    -->
-<iframe id="strike24300"
-  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1774106736&amp;format=interactive"></iframe>
-
-<!-- ✅ Strike 24350 -->
-        <!-- 
-<label>
-  <input type="checkbox" id="cb-strike24200" onchange="toggleChart('strike24200')">
-  24200
-</label>
-    -->
-<iframe id="strike24350"
-  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=706793629&amp;format=interactive"></iframe>
-
-
-
-    <!--
-  
-
-        <iframe id="strike1" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=803193799&amp;format=interactive"></iframe>
-        <iframe id="strike1" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1774106736&amp;format=interactive"></iframe>
-
-      <iframe id="strike1" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=706793629&amp;format=interactive"></iframe>
-
-
-  
-
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=803193799&amp;format=interactive"></iframe>
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1774106736&amp;format=interactive"></iframe>
-
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=706793629&amp;format=interactive"></iframe>
-    
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=2094820521&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1104113578&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1744028156&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1418383130&amp;format=interactive"></iframe>
-
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1770092151&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=199112051&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=952474926&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=2025273832&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=385681292&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1692038241&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=313543024&amp;format=interactive"></iframe>
-    -->
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1763013981&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=831657942&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=2063948723&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=548923849&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=575746495&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=521346185&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1387283168&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=2025182217&amp;format=interactive"></iframe>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=236540291&amp;format=interactive"></iframe>
-      
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=319939010&amp;format=interactive"></iframe>
-
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=2064959247&amp;format=interactive"></iframe>
-
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1169910435&format=interactive"></iframe>
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1540248194&format=interactive"></iframe>
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1130691669&format=interactive"></iframe>
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1302705504&format=interactive"></iframe>
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=983537328&format=interactive"></iframe>
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1180687704&format=interactive"></iframe>
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=857353960&format=interactive"></iframe>
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1083404014&format=interactive"></iframe>      
-
-
-  </div>
+  <!-- ✅ Auto chart grid -->
+  <div id="chart-grid" class="chart-grid"></div>
 </div>
-  
+
 <script>
-function toggleChart(id) {
-  let chart = document.getElementById(id);
-  let checkbox = document.getElementById("cb-" + id);
-  chart.style.display = checkbox.checked ? "block" : "none";
-}
+  // ✅ Strike → OID mapping (⚡ fill from your iframes)
+  const charts = {
+    24100: "803193799",
+    24150: "1774106736",
+    24200: "706793629",
+    24250: "2094820521",
+    24300: "1104113578",
+    24350: "1744028156",
+    24400: "1418383130",
+    24450: "1770092151",
+    24500: "199112051",
+    24550: "952474926",
+    24600: "2025273832",
+    24650: "385681292",
+    24700: "1692038241",
+    24750: "313543024",
+    24800: "1763013981",
+    24850: "831657942",
+    24900: "2063948723",
+    24950: "548923849",
+    25000: "575746495",
+    25050: "521346185",
+    25100: "1387283168",
+    25150: "2025182217",
+    25200: "236540291",
+    25250: "319939010",
+    25300: "2064959247",
+    25350: "1169910435",
+    25400: "1540248194",
+    25450: "1130691669",
+    25500: "1302705504",
+    25550: "983537328",
+    25600: "1180687704",
+    25650: "857353960",
+    25700: "1083404014"
+  };
+
+  const baseURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?format=interactive&oid=";
+
+  const checkboxContainer = document.getElementById("checkboxes");
+  const chartContainer = document.getElementById("chart-grid");
+
+  Object.entries(charts).forEach(([strike, oid]) => {
+    // ✅ Checkbox
+    const cbLabel = document.createElement("label");
+    cbLabel.innerHTML = `
+      <input type="checkbox" id="cb-strike${strike}" onchange="toggleChart('${strike}')" checked>
+      ${strike}
+    `;
+    checkboxContainer.appendChild(cbLabel);
+
+    // ✅ Chart iframe
+    const iframe = document.createElement("iframe");
+    iframe.id = `strike${strike}`;
+    iframe.src = `${baseURL}${oid}`;
+    iframe.style.width = "100%";
+    iframe.style.height = "400px";
+    chartContainer.appendChild(iframe);
+  });
+
+  // ✅ Toggle chart visibility
+  function toggleChart(strike) {
+    const checkbox = document.getElementById(`cb-strike${strike}`);
+    const iframe = document.getElementById(`strike${strike}`);
+    iframe.style.display = checkbox.checked ? "block" : "none";
+  }
 </script>
+
+
+
 
 
 <!-- ✅ Chart 2 -->
@@ -696,6 +572,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
