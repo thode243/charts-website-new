@@ -162,14 +162,18 @@
 
 <!-- ✅ Tabs -->
 <div class="tab">
+    <button class="tablinks" onclick="openChart(event, 'chart6')">Data</button>
+  <button class="tablinks" onclick="openChart(event, 'chart4')">OI-Amount</button>
+  <button class="tablinks" onclick="openChart(event, 'chart8')">Raw Data</button>
+  <button class="tablinks" onclick="openChart(event, 'chart7')">Stocks</button>
   <button class="tablinks" onclick="openChart(event, 'chart1')" id="defaultOpen">OI-CCOI-VWAP Diff Chart</button>
+  
   <button class="tablinks" onclick="openChart(event, 'chart2')">LTP VWAP diff-Amount</button>
   <button class="tablinks" onclick="openChart(event, 'chart3')">Chng OI-VWAP diff</button>
-  <button class="tablinks" onclick="openChart(event, 'chart4')">OI-Amount</button>
+  
   <button class="tablinks" onclick="openChart(event, 'chart5')">LTP_OI</button>
-  <button class="tablinks" onclick="openChart(event, 'chart6')">Data</button>
-   <button class="tablinks" onclick="openChart(event, 'chart7')">Stocks</button>
-  <button class="tablinks" onclick="openChart(event, 'chart8')">Raw Data</button>
+   
+  
   <!--
   <button class="tablinks" onclick="openChart(event, 'chart9')">OI-CCOI-VWAP Diff Chart1</button>
   -->
@@ -587,6 +591,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
