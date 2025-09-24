@@ -231,6 +231,10 @@
 -->
 </div>
 
+
+
+  
+<!-- ✅ Chart 1 -->
 <!-- ✅ Chart 1 -->
 <div id="chart1" class="tabcontent">
   <h2>OI-CCOI-VWAP Diff Chart</h2>
@@ -359,10 +363,11 @@
 
 
 <!-- ✅ Chart 2 -->
+<!-- ✅ Chart 2 -->
 <div id="chart2" class="tabcontent">
   <h2>LTP VWAP diff-Amount Chart</h2>
 
-   <!-- ✅ Legend -->
+  <!-- ✅ Legend -->
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Call Amount</span>
     <span><span class="legend-box solid-red"></span> Put Amount</span>
@@ -372,80 +377,79 @@
   
   <!-- ✅ Control buttons -->
   <div style="margin: 10px 0;">
-    <button onclick="selectAll(true)">✅ Select All</button>
-    <button onclick="selectAll(false)">❌ Deselect All</button>
+    <button onclick="selectAllChart('chart2', true)">✅ Select All</button>
+    <button onclick="selectAllChart('chart2', false)">❌ Deselect All</button>
   </div>
 
   <!-- ✅ Auto checkbox panel -->
-  <div id="checkboxes" class="checkboxes" style="margin-bottom:15px;"></div>
+  <div id="checkboxes-chart2" class="checkboxes" style="margin-bottom:15px;"></div>
 
   <!-- ✅ Auto chart grid -->
-  <div id="chart-grid" class="chart-grid"></div>
+  <div id="chart-grid-chart2" class="chart-grid"></div>
 </div>
 
 <script>
-  // ✅ Strike → OID mapping
-const charts = {
-  23700: "1609303275",
-  23750: "2030724389",
-  23800: "2137636012",
-  23850: "1306514441",
-  23900: "429244140",
-  23950: "1729304112",
-  24000: "1175382163",
-  24050: "1922749249",
-  24100: "705483333",
-  24150: "904483877",
-  24200: "1539030600",
-  24250: "645980446",
-  24300: "1388626122",
-  24350: "2045742962",
-  24400: "468254650",
-  24450: "1397756855",
-  24500: "252469178",
-  24550: "1093129059",
-  24600: "797108407",
-  24650: "2055600685",
-  24700: "1255982845",
-  24750: "520024954",
-  24800: "345740036",
-  24850: "890761275",
-  24900: "1256329691",
-  24950: "1573181280",
-  25000: "2041888527",
-  25050: "1738622122",
-  25100: "857231349",
-  25150: "1075266020",
-  25200: "1252345982",
-  25250: "417622520",
-  25300: "1987830237",
-  25350: "502677856",
-  25400: "1817186463",
-  25450: "1986070874",
-  25500: "420697297",
-  25550: "348873977",
-  25600: "806077007",
-  25650: "1815971458",
-  25700: "1938780248"
-};
+  const charts2 = {
+    23700: "1609303275",
+    23750: "2030724389",
+    23800: "2137636012",
+    23850: "1306514441",
+    23900: "429244140",
+    23950: "1729304112",
+    24000: "1175382163",
+    24050: "1922749249",
+    24100: "705483333",
+    24150: "904483877",
+    24200: "1539030600",
+    24250: "645980446",
+    24300: "1388626122",
+    24350: "2045742962",
+    24400: "468254650",
+    24450: "1397756855",
+    24500: "252469178",
+    24550: "1093129059",
+    24600: "797108407",
+    24650: "2055600685",
+    24700: "1255982845",
+    24750: "520024954",
+    24800: "345740036",
+    24850: "890761275",
+    24900: "1256329691",
+    24950: "1573181280",
+    25000: "2041888527",
+    25050: "1738622122",
+    25100: "857231349",
+    25150: "1075266020",
+    25200: "1252345982",
+    25250: "417622520",
+    25300: "1987830237",
+    25350: "502677856",
+    25400: "1817186463",
+    25450: "1986070874",
+    25500: "420697297",
+    25550: "348873977",
+    25600: "806077007",
+    25650: "1815971458",
+    25700: "1938780248"
+  };
 
-  const baseURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?format=interactive&oid=";      
+  const baseURL2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?format=interactive&oid=";      
 
-  const checkboxContainer = document.getElementById("checkboxes");
-  const chartContainer = document.getElementById("chart-grid");
+  const checkboxContainer2 = document.getElementById("checkboxes-chart2");
+  const chartContainer2 = document.getElementById("chart-grid-chart2");
 
-  Object.entries(charts).forEach(([strike, oid]) => {
+  Object.entries(charts2).forEach(([strike, oid]) => {
     // ✅ Checkbox
     const cbLabel = document.createElement("label");
     cbLabel.innerHTML = `
-      <input type="checkbox" id="cb-strike${strike}" onchange="toggleChart('${strike}')" checked>
+      <input type="checkbox" id="cb2-strike${strike}" onchange="toggleChart2('${strike}')" checked>
       ${strike}
     `;
-    checkboxContainer.appendChild(cbLabel);
+    checkboxContainer2.appendChild(cbLabel);
 
     // ✅ Wrapper div
     const wrapper = document.createElement("div");
-    wrapper.id = `wrapper${strike}`;
+    wrapper.id = `wrapper2-${strike}`;
     wrapper.style.marginBottom = "25px";
 
     // ✅ Title
@@ -456,8 +460,8 @@ const charts = {
 
     // ✅ Chart iframe
     const iframe = document.createElement("iframe");
-    iframe.id = `strike${strike}`;
-    iframe.src = `${baseURL}${oid}`;
+    iframe.id = `strike2-${strike}`;
+    iframe.src = `${baseURL2}${oid}`;
     iframe.style.width = "100%";
     iframe.style.height = "400px";
 
@@ -466,25 +470,25 @@ const charts = {
     wrapper.appendChild(iframe);
 
     // ✅ Append wrapper to grid
-    chartContainer.appendChild(wrapper);
+    chartContainer2.appendChild(wrapper);
   });
 
-  // ✅ Toggle wrapper visibility
-  function toggleChart(strike) {
-    const checkbox = document.getElementById(`cb-strike${strike}`);
-    const wrapper = document.getElementById(`wrapper${strike}`);
+  function toggleChart2(strike) {
+    const checkbox = document.getElementById(`cb2-strike${strike}`);
+    const wrapper = document.getElementById(`wrapper2-${strike}`);
     wrapper.style.display = checkbox.checked ? "block" : "none";
   }
 
-  // ✅ Select/Deselect All
-  function selectAll(state) {
-    Object.keys(charts).forEach(strike => {
-      const checkbox = document.getElementById(`cb-strike${strike}`);
+  function selectAllChart(chartId, state) {
+    const chartKeys = Object.keys(charts2);
+    chartKeys.forEach(strike => {
+      const checkbox = document.getElementById(`cb2-strike${strike}`);
       checkbox.checked = state;
-      toggleChart(strike);
+      toggleChart2(strike);
     });
   }
 </script>
+
 
   
   <!--
@@ -512,8 +516,10 @@ const charts = {
 
   -->
   
-  
 
+
+  
+<!-- ✅ Chart 3 -->
 <!-- ✅ Chart 3 -->
 <div id="chart3" class="tabcontent">
   <h2>Change OI-VWAP Diff Chart</h2>
@@ -550,7 +556,7 @@ const charts = {
 
 
 
-  
+  <!-- ✅ Chart 5 -->
 <!-- ✅ Chart 5 -->
 <div id="chart5" class="tabcontent">
   <h2>LTP_OI Chart</h2>
@@ -591,7 +597,7 @@ const charts = {
 
 
 
-  
+  <!-- ✅ Chart 7 -->
   <!-- ✅ Chart 7 -->
 <div id="chart7" class="tabcontent">
   <h2>Stocks</h2>
@@ -633,6 +639,9 @@ document.getElementById("defaultOpen").click();
   </div>
 </div>
 
+
+
+    <!-- ✅ Chart 9 -->
   <!-- ✅ Chart 9 -->
     <!--
 <div id="chart9" class="tabcontent">
@@ -747,6 +756,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
