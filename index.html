@@ -354,18 +354,23 @@
 </script>
 
 
-
+  
+  
 
 
 <!-- ✅ Chart 2 -->
 <div id="chart2" class="tabcontent">
   <h2>LTP VWAP diff-Amount Chart</h2>
+
+   <!-- ✅ Legend -->
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Call Amount</span>
     <span><span class="legend-box solid-red"></span> Put Amount</span>
     <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
     <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
   </div>
+  
+  <!--
   <div class="chart-grid">
     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1175382163&format=interactive"></iframe>
   
@@ -381,14 +386,132 @@
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=252469178&format=interactive"></iframe>
   
 
-
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1093129059&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=797108407&format=interactive"></iframe>
 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=2055600685&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1255982845&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=520024954&format=interactive"></iframe>
+
+  -->
   
+  <!-- ✅ Control buttons -->
+  <div style="margin: 10px 0;">
+    <button onclick="selectAll(true)">✅ Select All</button>
+    <button onclick="selectAll(false)">❌ Deselect All</button>
+  </div>
+
+  <!-- ✅ Auto checkbox panel -->
+  <div id="checkboxes" class="checkboxes" style="margin-bottom:15px;"></div>
+
+  <!-- ✅ Auto chart grid -->
+  <div id="chart-grid" class="chart-grid"></div>
+</div>
+
+<script>
+  // ✅ Strike → OID mapping
+const charts = {
+  23700: "1609303275",
+  23750: "2030724389",
+  23800: "2137636012",
+  23850: "1306514441",
+  23900: "429244140",
+  23950: "1729304112",
+  24000: "1175382163",
+  24050: "1922749249",
+  24100: "705483333",
+  24150: "904483877",
+  24200: "1539030600",
+  24250: "645980446",
+  24300: "1388626122",
+  24350: "2045742962",
+  24400: "468254650",
+  24450: "1397756855",
+  24500: "252469178",
+  24550: "1093129059",
+  24600: "797108407",
+  24650: "2055600685",
+  24700: "1255982845",
+  24750: "520024954",
+  24800: "345740036",
+  24850: "890761275",
+  24900: "1256329691",
+  24950: "1573181280",
+  25000: "2041888527",
+  25050: "1738622122",
+  25100: "857231349",
+  25150: "1075266020",
+  25200: "1252345982",
+  25250: "417622520",
+  25300: "1987830237",
+  25350: "502677856",
+  25400: "1817186463",
+  25450: "1986070874",
+  25500: "420697297",
+  25550: "348873977",
+  25600: "806077007",
+  25650: "1815971458",
+  25700: "1938780248"
+};
+
+    const baseURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?format=interactive&oid=";
+
+  const checkboxContainer = document.getElementById("checkboxes");
+  const chartContainer = document.getElementById("chart-grid");
+
+  Object.entries(charts).forEach(([strike, oid]) => {
+    // ✅ Checkbox
+    const cbLabel = document.createElement("label");
+    cbLabel.innerHTML = `
+      <input type="checkbox" id="cb-strike${strike}" onchange="toggleChart('${strike}')" checked>
+      ${strike}
+    `;
+    checkboxContainer.appendChild(cbLabel);
+
+    // ✅ Wrapper div
+    const wrapper = document.createElement("div");
+    wrapper.id = `wrapper${strike}`;
+    wrapper.style.marginBottom = "25px";
+
+    // ✅ Title
+    const title = document.createElement("h3");
+    title.innerText = `Strike ${strike}`;
+    title.style.textAlign = "center";
+    title.style.marginBottom = "8px";
+
+    // ✅ Chart iframe
+    const iframe = document.createElement("iframe");
+    iframe.id = `strike${strike}`;
+    iframe.src = `${baseURL}${oid}`;
+    iframe.style.width = "100%";
+    iframe.style.height = "400px";
+
+    // ✅ Append title + chart to wrapper
+    wrapper.appendChild(title);
+    wrapper.appendChild(iframe);
+
+    // ✅ Append wrapper to grid
+    chartContainer.appendChild(wrapper);
+  });
+
+  // ✅ Toggle wrapper visibility
+  function toggleChart(strike) {
+    const checkbox = document.getElementById(`cb-strike${strike}`);
+    const wrapper = document.getElementById(`wrapper${strike}`);
+    wrapper.style.display = checkbox.checked ? "block" : "none";
+  }
+
+  // ✅ Select/Deselect All
+  function selectAll(state) {
+    Object.keys(charts).forEach(strike => {
+      const checkbox = document.getElementById(`cb-strike${strike}`);
+      checkbox.checked = state;
+      toggleChart(strike);
+    });
+  }
+</script>
+
+    
   </div>
 </div>
 
@@ -420,6 +543,8 @@
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1575109831&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=544357475&format=interactive"></iframe>
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1000374059&format=interactive"></iframe>
+
+
   
   </div>
 </div>
@@ -623,6 +748,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
