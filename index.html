@@ -304,7 +304,12 @@
     `;
     checkboxContainer.appendChild(cbLabel);
 
-     // ✅ Title
+    // ✅ Wrapper div
+    const wrapper = document.createElement("div");
+    wrapper.id = `wrapper${strike}`;
+    wrapper.style.marginBottom = "25px";
+
+    // ✅ Title
     const title = document.createElement("h3");
     title.innerText = `Strike ${strike}`;
     title.style.textAlign = "center";
@@ -316,14 +321,20 @@
     iframe.src = `${baseURL}${oid}`;
     iframe.style.width = "100%";
     iframe.style.height = "400px";
-    chartContainer.appendChild(iframe);
+
+    // ✅ Append title + chart to wrapper
+    wrapper.appendChild(title);
+    wrapper.appendChild(iframe);
+
+    // ✅ Append wrapper to grid
+    chartContainer.appendChild(wrapper);
   });
 
-  // ✅ Toggle chart visibility
+  // ✅ Toggle wrapper visibility
   function toggleChart(strike) {
     const checkbox = document.getElementById(`cb-strike${strike}`);
-    const iframe = document.getElementById(`strike${strike}`);
-    iframe.style.display = checkbox.checked ? "block" : "none";
+    const wrapper = document.getElementById(`wrapper${strike}`);
+    wrapper.style.display = checkbox.checked ? "block" : "none";
   }
 </script>
 
@@ -597,6 +608,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
