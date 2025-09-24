@@ -304,6 +304,12 @@
     `;
     checkboxContainer.appendChild(cbLabel);
 
+     // ✅ Title
+    const title = document.createElement("h3");
+    title.innerText = `Strike ${strike}`;
+    title.style.textAlign = "center";
+    title.style.marginBottom = "8px";
+
     // ✅ Chart iframe
     const iframe = document.createElement("iframe");
     iframe.id = `strike${strike}`;
@@ -591,6 +597,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
