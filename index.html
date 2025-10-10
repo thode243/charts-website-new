@@ -181,13 +181,61 @@
   -->
   </div>
 
+ 
+  <!-- ✅ Chart 6 -->
+   <!--
+<div id="chart6" class="tabcontent">
+  <h2>Data</h2>
+
+  
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=1970058116&single=true" class="oi-amount-frame"></iframe>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubhtml?gid=1970058116&single=true" class="oi-amount-frame"></iframe>
+</div>
+
+  -->
   <!-- ✅ Chart 6 -->
 <div id="chart6" class="tabcontent">
   <h2>Data</h2>
-  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=1970058116&single=true" class="oi-amount-frame"></iframe>
-  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubhtml?gid=1970058116&single=true" class="oi-amount-frame"></iframe>
   
+  <div class="sheet-container1">
+    <iframe 
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=1970058116&single=true" 
+      class="oi-amount-frame">
+    </iframe>
+    
+    <iframe 
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubhtml?gid=1970058116&single=true" 
+      class="oi-amount-frame">
+    </iframe>
+  </div>
 </div>
+
+<style>
+  /* Container to align frames side by side */
+  .sheet-container1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;              /* space between frames */
+  }
+
+  /* Adjust iframe size */
+  .oi-amount-frame {
+    width: 49%;             /* two side-by-side */
+    height: 600px;          /* adjust height as needed */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  /* Optional: Mobile responsiveness */
+  @media (max-width: 900px) {
+    .oi-amount-frame {
+      width: 100%;
+    }
+  }
+</style>
+
+
 
   <!-- ✅ Chart 4 -->
 <div id="chart4" class="tabcontent">
@@ -774,6 +822,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
