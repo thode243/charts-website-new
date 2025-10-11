@@ -564,6 +564,19 @@ window.addEventListener("DOMContentLoaded", () => {
       toggleChart2(strike);
     });
   }
+
+  // ✅ On page load, deselect everything by default
+window.addEventListener("DOMContentLoaded", () => {
+  // Deselect all for chart group 1
+  if (typeof charts !== 'undefined') {
+    selectAll(false);
+  }
+
+  // Deselect all for chart group 2
+  if (typeof charts2 !== 'undefined') {
+    selectAllChart('chart2', false);
+  }
+});
 </script>
 
 
@@ -853,6 +866,7 @@ function isMarketOpen() {
 </script>
 </body>
 </html>
+
 
 
 
