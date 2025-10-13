@@ -898,9 +898,45 @@ function isMarketOpen() {
   window.setRefreshInterval = setRefreshInterval;
   window.refreshCharts = refreshCharts;
 });
+
+  // ✅ ✅✅✅✅✅✅✅Navigation
+let currentTab = 0;
+  const tabs = document.querySelectorAll('.tab-content');
+  const buttons = document.querySelectorAll('.tab-button');
+  let autoSwitch;
+
+  function showTab(index) {
+    tabs.forEach((tab, i) => {
+      tab.classList.toggle('active', i === index);
+      buttons[i].classList.toggle('active', i === index);
+    });
+    currentTab = index;
+    resetAutoSwitch();
+  }
+
+  function nextTab() {
+    currentTab = (currentTab + 1) % tabs.length;
+    showTab(currentTab);
+  }
+
+  function prevTab() {
+    currentTab = (currentTab - 1 + tabs.length) % tabs.length;
+    showTab(currentTab);
+  }
+
+  function resetAutoSwitch() {
+    clearInterval(autoSwitch);
+    autoSwitch = setInterval(nextTab, 10000); // 10 seconds
+  }
+
+  // Start auto rotation
+  resetAutoSwitch();
+
+  
 </script>
 </body>
 </html>
+
 
 
 
