@@ -834,6 +834,98 @@ document.getElementById("defaultOpen").click();
   </div>
 </div>
   -->
+    <!-- ✅ Chart 10 -->
+  <!-- ✅ Chart 10 -->
+
+  <div id="chart10" class="tabcontent">
+  <h2>Nifty Trend Charts</h2>
+  <div id="chart-grid" class="chart-grid"></div>
+</div>
+
+<script>
+  // ✅ Stock → OID mapping
+  const charts = {
+    "Reliance": "455781613",
+    "TCS": "2078432384",
+    "HDFC Bank": "1252491352",
+    "Bharti Airtel": "699968689",
+    "ICICI Bank": "78434845",
+    "Infosys": "1220930138",
+    "SBI": "1071601680",
+    "HUL": "1610857771",
+    "Bajaj Finance": "980326881",
+    "ITC": "910897587",
+    "HCL Tech": "1735546490",
+    "Larsen": "1764198936",
+    "Sun Pharma": "956933984",
+    "Kotak Mahindra": "801790032",
+    "Maruti Suzuki": "754351671",
+    "M&M": "42136428",
+    "UltraTech Cement": "1780412298",
+    "Wipro": "1674271198",
+    "NTPC": "1126027213",
+    "Axis Bank": "1700216267",
+    "ONGC": "2143321975",
+    "Bajaj Finserv": "1934877",
+    "Titan Company": "1401892949",
+    "Tata Motors": "215844202",
+    "Adani Enterprises": "399677296",
+    "Power Grid": "1329498822",
+    "JSW Steel": "2026614815",
+    "Bajaj Auto": "1851530222",
+    "Adani Ports": "1283661298",
+    "Coal India": "11171470",
+    "Asian Paints": "248810018",
+    "Nestle": "1368293862",
+    "Bharat Elec": "206345785",
+    "Trent": "1285070560",
+    "Tata Steel": "1075769573",
+    "Grasim": "689237425",
+    "Tech Mahindra": "262145338",
+    "SBI Life": "1979720879",
+    "Hindalco": "1473053759",
+    "Eicher Motors": "1800796098",
+    "HDFC Life": "307433263",
+    "Cipla": "1973275140",
+    "Britannia": "682741517",
+    "Shriram Finance": "1100918467",
+    "BPCL": "1627916429",
+    "Tata Consumer": "1711577292",
+    "Dr Reddys": "228599253",
+    "Apollo Hospital": "1046028562",
+    "IndusInd Bank": "1970771972",
+    "Hero Motocorp": "1810016563"
+  };
+
+  const baseURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubchart?format=interactive&oid=";
+  const chartContainer = document.getElementById("chart-grid");
+
+  // ✅ Loop and create chart iframes
+  for (const [stock, oid] of Object.entries(charts)) {
+    // Wrapper div
+    const wrapper = document.createElement("div");
+    wrapper.className = "chart-wrapper";
+    wrapper.style.marginBottom = "20px";
+
+    // Title
+    const title = document.createElement("h3");
+    title.innerText = stock;
+    title.style.textAlign = "center";
+    wrapper.appendChild(title);
+
+    // Chart iframe
+    const iframe = document.createElement("iframe");
+    iframe.src = `${baseURL}${oid}`;
+    iframe.style.width = "100%";
+    iframe.style.height = "400px";
+    iframe.style.border = "none";
+    wrapper.appendChild(iframe);
+
+    // Add to container
+    chartContainer.appendChild(wrapper);
+  }
+</script>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -937,6 +1029,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
