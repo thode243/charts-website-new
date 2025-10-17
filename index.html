@@ -835,9 +835,9 @@ document.getElementById("defaultOpen").click();
 </div>
   -->
     <!-- ✅ Chart 10 -->
-  <div id="chart10" class="tabcontent">
-  <h2>Nifty Trend Charts</h2>
   
+ <div id="chart10" class="tabcontent">
+  <h2>Nifty Trend Charts</h2>
   <div class="sheet-container1" id="chart-grid"></div>
 </div>
 
@@ -845,15 +845,20 @@ document.getElementById("defaultOpen").click();
 .sheet-container1 {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 10px;
 }
 
 .oi-amount-frame {
-  width: 49%;       /* two charts side by side */
-  height: 600px;
+  width: 49%;
+  height: 400px;
   border: 1px solid #ccc;
   border-radius: 8px;
+}
+
+.chart-title {
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 @media (max-width: 900px) {
@@ -861,79 +866,23 @@ document.getElementById("defaultOpen").click();
     width: 100%;
   }
 }
-
-.chart-title {
-  text-align: center;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
 </style>
 
 <script>
-// ✅ All charts with their OIDs
 const charts = {
   "Reliance": "455781613",
   "TCS": "2078432384",
   "HDFC Bank": "1252491352",
   "Bharti Airtel": "699968689",
-  "ICICI Bank": "78434845",
-  "Infosys": "1220930138",
-  "SBI": "1071601680",
-  "HUL": "1610857771",
-  "Bajaj Finance": "980326881",
-  "ITC": "910897587",
-  "HCL Tech": "1735546490",
-  "Larsen": "1764198936",
-  "Sun Pharma": "956933984",
-  "Kotak Mahindra": "801790032",
-  "Maruti Suzuki": "754351671",
-  "M&M": "42136428",
-  "UltraTech Cement": "1780412298",
-  "Wipro": "1674271198",
-  "NTPC": "1126027213",
-  "Axis Bank": "1700216267",
-  "ONGC": "2143321975",
-  "Bajaj Finserv": "1934877",
-  "Titan Company": "1401892949",
-  "Tata Motors": "215844202",
-  "Adani Enterprises": "399677296",
-  "Power Grid": "1329498822",
-  "JSW Steel": "2026614815",
-  "Bajaj Auto": "1851530222",
-  "Adani Ports": "1283661298",
-  "Coal India": "11171470",
-  "Asian Paints": "248810018",
-  "Nestle": "1368293862",
-  "Bharat Elec": "206345785",
-  "Trent": "1285070560",
-  "Tata Steel": "1075769573",
-  "Grasim": "689237425",
-  "Tech Mahindra": "262145338",
-  "SBI Life": "1979720879",
-  "Hindalco": "1473053759",
-  "Eicher Motors": "1800796098",
-  "HDFC Life": "307433263",
-  "Cipla": "1973275140",
-  "Britannia": "682741517",
-  "Shriram Finance": "1100918467",
-  "BPCL": "1627916429",
-  "Tata Consumer": "1711577292",
-  "Dr Reddys": "228599253",
-  "Apollo Hospital": "1046028562",
-  "IndusInd Bank": "1970771972",
   "Hero Motocorp": "1810016563"
 };
 
-// ✅ Base URL for Google Sheet charts
 const baseURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubchart?format=interactive&oid=";
 
 const chartGrid = document.getElementById("chart-grid");
 
-// ✅ Generate charts dynamically
 for (const [name, oid] of Object.entries(charts)) {
-  // Chart container
   const chartDiv = document.createElement("div");
-  chartDiv.style.width = "100%";
 
   // Chart title
   const title = document.createElement("div");
@@ -950,6 +899,7 @@ for (const [name, oid] of Object.entries(charts)) {
   chartGrid.appendChild(chartDiv);
 }
 </script>
+
 
 
 
@@ -1055,3 +1005,4 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
