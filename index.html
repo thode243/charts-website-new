@@ -836,7 +836,8 @@ document.getElementById("defaultOpen").click();
   -->
     <!-- ✅ Chart 10 -->
   
- <div id="chart10" class="tabcontent">
+ !-- ✅ Chart 10 -->
+<div id="chart10" class="tabcontent">
   <h2>Nifty Trend Charts</h2>
 
   <!-- Select/Deselect All Buttons -->
@@ -849,7 +850,6 @@ document.getElementById("defaultOpen").click();
 </div>
 
 <script>
-  // ✅ List of all chart URLs
   const chartUrls = [
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubchart?oid=455781613&format=interactive&widget=true",
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubchart?oid=2078432384&format=interactive&widget=true",
@@ -924,7 +924,7 @@ document.getElementById("defaultOpen").click();
     const iframe = document.createElement('iframe');
     iframe.src = url;
     iframe.id = 'iframe_' + index;
-    iframe.className = 'oi-amount-frame1';
+    iframe.className = 'frame10';  // Updated class name
 
     chartDiv.appendChild(checkbox);
     chartDiv.appendChild(label);
@@ -957,10 +957,12 @@ document.getElementById("defaultOpen").click();
     margin-top: 10px;
   }
 
-  .oi-amount-frame1 {
+  .frame10 {
     width: 100%;
-    height: 300px;
+    height: 300px;         /* You can use vh for responsive height */
     border: 1px solid #ccc;
+    overflow: hidden;       /* Remove scrollbars */
+    box-sizing: border-box; /* Include border in width/height */
   }
 
   .chart-wrapper input[type="checkbox"] {
@@ -973,7 +975,6 @@ document.getElementById("defaultOpen").click();
     cursor: pointer;
   }
 </style>
-
 
 
 
@@ -1079,6 +1080,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
