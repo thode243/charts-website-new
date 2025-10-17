@@ -838,67 +838,95 @@ document.getElementById("defaultOpen").click();
   
  <div id="chart10" class="tabcontent">
   <h2>Nifty Trend Charts</h2>
-  <div class="sheet-container1" id="chart-grid"></div>
+
+  <!-- Select/Deselect All Buttons -->
+  <div class="chart-controls">
+    <button onclick="toggleAll(true)">Select All</button>
+    <button onclick="toggleAll(false)">Deselect All</button>
+  </div>
+
+  <div id="chartContainer" class="iframe-grid"></div>
 </div>
 
-<style>
-.sheet-container1 {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.oi-amount-frame {
-  width: 49%;
-  height: 400px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.chart-title {
-  text-align: center;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-@media (max-width: 900px) {
-  .oi-amount-frame {
-    width: 100%;
-  }
-}
-</style>
-
 <script>
-const charts = {
-  "Reliance": "455781613",
-  "TCS": "2078432384",
-  "HDFC Bank": "1252491352",
-  "Bharti Airtel": "699968689",
-  "Hero Motocorp": "1810016563"
-};
+  // ✅ List of all chart URLs
+  const chartUrls = [
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubchart?oid=455781613&format=interactive",
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubchart?oid=2078432384&format=interactive",
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubchart?oid=1252491352&format=interactive",
+    // ... add all remaining 50 URLs here
+  ];
 
-const baseURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubchart?format=interactive&oid=";
+  const container = document.getElementById('chartContainer');
 
-const chartGrid = document.getElementById("chart-grid");
+  chartUrls.forEach((url, index) => {
+    const chartDiv = document.createElement('div');
+    chartDiv.className = 'chart-wrapper';
 
-for (const [name, oid] of Object.entries(charts)) {
-  const chartDiv = document.createElement("div");
+    // Checkbox
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = 'chart_' + index;
+    checkbox.checked = true;
+    checkbox.onchange = () => toggleChart(index);
 
-  // Chart title
-  const title = document.createElement("div");
-  title.className = "chart-title";
-  title.innerText = name;
-  chartDiv.appendChild(title);
+    const label = document.createElement('label');
+    label.htmlFor = 'chart_' + index;
+    label.textContent = 'Chart ' + (index + 1);
 
-  // Chart iframe
-  const iframe = document.createElement("iframe");
-  iframe.className = "oi-amount-frame";
-  iframe.src = `${baseURL}${oid}`;
-  chartDiv.appendChild(iframe);
+    // Iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.id = 'iframe_' + index;
+    iframe.className = 'oi-amount-frame1';
 
-  chartGrid.appendChild(chartDiv);
-}
+    chartDiv.appendChild(checkbox);
+    chartDiv.appendChild(label);
+    chartDiv.appendChild(iframe);
+    container.appendChild(chartDiv);
+  });
+
+  // Toggle individual chart
+  function toggleChart(index) {
+    const cb = document.getElementById('chart_' + index);
+    const iframe = document.getElementById('iframe_' + index);
+    iframe.style.display = cb.checked ? 'block' : 'none';
+  }
+
+  // Select/Deselect all charts
+  function toggleAll(select) {
+    chartUrls.forEach((_, index) => {
+      const cb = document.getElementById('chart_' + index);
+      cb.checked = select;
+      toggleChart(index);
+    });
+  }
 </script>
+
+<style>
+  .iframe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .oi-amount-frame1 {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+  }
+
+  .chart-wrapper input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  .chart-controls button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+</style>
 
 
 
@@ -1005,4 +1033,5 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
