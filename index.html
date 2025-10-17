@@ -846,7 +846,7 @@ document.getElementById("defaultOpen").click();
     <button onclick="toggleAll(false)">Deselect All</button>
   </div>
 
-  <div id="chartContainer" class="iframe-grid"></div>
+   <div id="chartContainer"></div>
 </div>
 
 <script>
@@ -906,75 +906,101 @@ document.getElementById("defaultOpen").click();
   const container = document.getElementById('chartContainer');
 
   chartUrls.forEach((url, index) => {
+    const strike = index + 1; // can be replaced with actual strike value
+
     const chartDiv = document.createElement('div');
     chartDiv.className = 'chart-wrapper';
 
     // Checkbox
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.id = 'chart_' + index;
+    checkbox.id = 'chart_' + strike;
     checkbox.checked = true;
-    checkbox.onchange = () => toggleChart(index);
+    checkbox.onchange = () => toggleChart(strike);
 
     const label = document.createElement('label');
-    label.htmlFor = 'chart_' + index;
-    label.textContent = 'Chart ' + (index + 1);
+    label.htmlFor = 'chart_' + strike;
+    label.textContent = 'Chart ' + strike;
 
     // Iframe
     const iframe = document.createElement('iframe');
-    iframe.src = url;
-    iframe.id = 'iframe_' + index;
-    iframe.className = 'frame10';  // Updated class name
+    iframe.id = `strike${strike}`;
+    iframe.src = url; // or `${baseURL}${oid}`
+    iframe.style.width = "100%";
+    iframe.style.height = "400px";
+    iframe.style.border = "1px solid #ccc";
+    iframe.style.overflow = "hidden";
+    iframe.style.boxSizing = "border-box";
 
+    // Individual buttons for this chart
+    const controls = document.createElement('div');
+    controls.className = 'chart-controls';
+    
+    const btnRefresh = document.createElement('button');
+    btnRefresh.id = 'button' + strike + '_refresh';
+    btnRefresh.textContent = 'Refresh ' + strike;
+    btnRefresh.onclick = () => {
+      iframe.src = iframe.src; // simple refresh
+    };
+
+    const btnHide = document.createElement('button');
+    btnHide.id = 'button' + strike + '_hide';
+    btnHide.textContent = 'Hide ' + strike;
+    btnHide.onclick = () => {
+      iframe.style.display = 'none';
+      checkbox.checked = false;
+    };
+
+    const btnShow = document.createElement('button');
+    btnShow.id = 'button' + strike + '_show';
+    btnShow.textContent = 'Show ' + strike;
+    btnShow.onclick = () => {
+      iframe.style.display = 'block';
+      checkbox.checked = true;
+    };
+
+    controls.appendChild(btnRefresh);
+    controls.appendChild(btnHide);
+    controls.appendChild(btnShow);
+
+    // Append everything
     chartDiv.appendChild(checkbox);
     chartDiv.appendChild(label);
+    chartDiv.appendChild(controls);
     chartDiv.appendChild(iframe);
     container.appendChild(chartDiv);
   });
 
   // Toggle individual chart
-  function toggleChart(index) {
-    const cb = document.getElementById('chart_' + index);
-    const iframe = document.getElementById('iframe_' + index);
+  function toggleChart(strike) {
+    const cb = document.getElementById('chart_' + strike);
+    const iframe = document.getElementById('strike' + strike);
     iframe.style.display = cb.checked ? 'block' : 'none';
-  }
-
-  // Select/Deselect all charts
-  function toggleAll(select) {
-    chartUrls.forEach((_, index) => {
-      const cb = document.getElementById('chart_' + index);
-      cb.checked = select;
-      toggleChart(index);
-    });
   }
 </script>
 
 <style>
-  .iframe-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
-  }
-
-  .frame10 {
-    width: 100%;
-    height: 300px;         /* You can use vh for responsive height */
-    border: 1px solid #ccc;
-    overflow: hidden;       /* Remove scrollbars */
-    box-sizing: border-box; /* Include border in width/height */
+  .chart-wrapper {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
   }
 
   .chart-wrapper input[type="checkbox"] {
     margin-right: 5px;
   }
 
+  .chart-controls {
+    margin: 5px 0;
+  }
+
   .chart-controls button {
-    margin-right: 10px;
+    margin-right: 5px;
     padding: 5px 10px;
     cursor: pointer;
   }
 </style>
+
 
 
 
@@ -1080,6 +1106,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
