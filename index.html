@@ -841,9 +841,11 @@ document.getElementById("defaultOpen").click();
   <h2>Nifty Trend Charts</h2>
   <div id="chart-grid" class="chart-grid"></div>
 </div>
-
+  
+// ✅ Stock → OID mapping
+  
 <script>
-  // ✅ Stock → OID mapping
+document.addEventListener("DOMContentLoaded", () => {  
   const charts = {
     "Reliance": "455781613",
     "TCS": "2078432384",
@@ -898,32 +900,27 @@ document.getElementById("defaultOpen").click();
   };
 
   const baseURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSA5vQhFswmLtmvKkdQejxkj8uQIrAuIqTxruTjeetb9xVr5uRMNKm--Gux9TryBUQbJBtZ1LBWyYAF/pubchart?format=interactive&oid=";
-  const chartContainer = document.getElementById("chart-grid");
+  const container = document.getElementById("chart-grid");
 
-  // ✅ Loop and create chart iframes
-  for (const [stock, oid] of Object.entries(charts)) {
-    // Wrapper div
+  Object.entries(charts).forEach(([stock, oid]) => {
     const wrapper = document.createElement("div");
-    wrapper.className = "chart-wrapper";
     wrapper.style.marginBottom = "20px";
 
-    // Title
     const title = document.createElement("h3");
-    title.innerText = stock;
+    title.textContent = stock;
     title.style.textAlign = "center";
-    wrapper.appendChild(title);
 
-    // Chart iframe
     const iframe = document.createElement("iframe");
     iframe.src = `${baseURL}${oid}`;
-    iframe.style.width = "100%";
-    iframe.style.height = "400px";
+    iframe.width = "100%";
+    iframe.height = "400";
     iframe.style.border = "none";
-    wrapper.appendChild(iframe);
 
-    // Add to container
-    chartContainer.appendChild(wrapper);
-  }
+    wrapper.appendChild(title);
+    wrapper.appendChild(iframe);
+    container.appendChild(wrapper);
+  });
+});
 </script>
 
 
@@ -1029,6 +1026,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
