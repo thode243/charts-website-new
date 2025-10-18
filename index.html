@@ -291,30 +291,37 @@
   </div>
 
 <style>
+  /* 📊 Main layout: 2 charts per row, full width */
   .chart-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* ✅ two charts per row */
-    gap: 15px;
-    padding: 10px;
+    grid-template-columns: repeat(2, 1fr); /* ✅ two columns */
+    gap: 25px; /* more breathing space */
+    padding: 20px;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
+  /* 🖼️ Chart iframe style */
   .chart-grid iframe {
     width: 100%;
-    height: 320px;
-    border: none; /* ✅ removes scrollbars border */
-    border-radius: 10px;
-    overflow: hidden; /* ✅ ensures no scrollbars */
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    height: 500px; /* ✅ increased height for full-size display */
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    overflow: hidden; /* removes scrollbars */
   }
 
-  /* ✅ Responsive: one chart per row on smaller screens */
-  @media (max-width: 800px) {
+  /* 📱 Responsive: 1 chart per row on mobile */
+  @media (max-width: 900px) {
     .chart-grid {
       grid-template-columns: 1fr;
     }
+
+    .chart-grid iframe {
+      height: 400px; /* smaller on small screens */
+    }
   }
 </style>
-
 
 
 
@@ -1119,6 +1126,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
