@@ -278,7 +278,7 @@
 <div id="chart4" class="tabcontent">
   <h2>OI-Amount Chart</h2>
 
-  <div class="chart-grid">
+  <div class="chart-grid4">
   
   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=134367014&format=interactive"></iframe>
   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1679063422&format=interactive"></iframe>
@@ -291,41 +291,33 @@
   </div>
 
 <style>
-  /* 📊 Grid layout: 2 charts per row, large width */
-  .chart-grid {
+  /* 📊 Tight grid — 2 charts per row, no gap */
+  .chart-grid4 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px; /* space between charts */
-    justify-content: center;
-    align-items: stretch;
-    padding: 20px 40px;
-    max-width: 1800px; /* makes it nicely centered on wide screens */
-    margin: auto;
+    gap: 5px; /* almost no space between charts */
+    padding: 0;
+    margin: 0 auto;
+    width: 98vw; /* use almost full screen width */
     box-sizing: border-box;
   }
 
-  /* 🖼️ Chart styling */
-  .chart-grid iframe {
+  /* 🖼️ Charts: wide and neat */
+  .chart-grid4 iframe {
     width: 100%;
-    height: 600px; /* ✅ taller chart for better visibility */
+    height: 500px; /* same height */
     border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 0;
     overflow: hidden;
   }
 
-  /* 📱 Responsive: one chart per row on smaller screens */
+  /* 📱 Responsive: one per row on smaller screens */
   @media (max-width: 1000px) {
-    .chart-grid {
+    .chart-grid4 {
       grid-template-columns: 1fr;
-      padding: 10px 20px;
-    }
-
-    .chart-grid iframe {
-      height: 500px;
+      width: 100%;
     }
   }
-</style>
 </style>
 
 
@@ -1131,6 +1123,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
