@@ -274,10 +274,10 @@
 
 
   <!-- ✅ Chart 4 -->
+<!-- ✅ Chart 4 -->
 <div id="chart4" class="tabcontent">
   <h2>OI-Amount Chart</h2>
-
-  <div id="oiChartContainer" class="responsive-grid"></div>
+  <div class="responsive-grid" id="oiChartContainer"></div>
 </div>
 
 <script>
@@ -292,26 +292,8 @@
 
   const container = document.getElementById('oiChartContainer');
 
-  oiChartUrls.forEach((url, index) => {
-    const chartNum = index + 1;
-
-    const chartDiv = document.createElement('div');
-    chartDiv.className = 'chart-wrapper';
-
-    // Checkbox
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = 'oiChart_' + chartNum;
-    checkbox.checked = true;
-    checkbox.onchange = () => toggleOiChart(chartNum);
-
-    const label = document.createElement('label');
-    label.htmlFor = 'oiChart_' + chartNum;
-    label.textContent = 'Chart ' + chartNum;
-
-    // Iframe
+  oiChartUrls.forEach((url) => {
     const iframe = document.createElement('iframe');
-    iframe.id = `oiChartFrame${chartNum}`;
     iframe.src = url;
     iframe.loading = "lazy";
     iframe.style.width = "100%";
@@ -319,68 +301,19 @@
     iframe.style.border = "1px solid #ccc";
     iframe.scrolling = "no";
 
-    // Controls
-    const controls = document.createElement('div');
-    controls.className = 'chart-controls';
-
-    const btnRefresh = document.createElement('button');
-    btnRefresh.textContent = 'Refresh';
-    btnRefresh.onclick = () => { iframe.src = iframe.src; };
-
-    const btnHide = document.createElement('button');
-    btnHide.textContent = 'Hide';
-    btnHide.onclick = () => {
-      iframe.style.display = 'none';
-      checkbox.checked = false;
-    };
-
-    const btnShow = document.createElement('button');
-    btnShow.textContent = 'Show';
-    btnShow.onclick = () => {
-      iframe.style.display = 'block';
-      checkbox.checked = true;
-    };
-
-    controls.append(btnRefresh, btnHide, btnShow);
-
-    chartDiv.append(checkbox, label, controls, iframe);
-    container.appendChild(chartDiv);
+    container.appendChild(iframe);
   });
-
-  function toggleOiChart(num) {
-    const cb = document.getElementById('oiChart_' + num);
-    const iframe = document.getElementById('oiChartFrame' + num);
-    iframe.style.display = cb.checked ? 'block' : 'none';
-  }
 </script>
 
 <style>
-  /* Reuse same styles as Chart 10 */
   .responsive-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 15px;
     align-items: start;
   }
-
-  .chart-wrapper {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 8px;
-    border-radius: 10px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.1);
-  }
-
-  .chart-controls {
-    margin: 5px 0;
-  }
-
-  .chart-controls button {
-    margin-right: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
-  }
 </style>
+
 
 
   <!-- ✅ Chart 8 -->
@@ -1184,6 +1117,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
