@@ -291,36 +291,41 @@
   </div>
 
 <style>
-  /* 📊 Main layout: 2 charts per row, full width */
+  /* 📊 Grid layout: 2 charts per row, large width */
   .chart-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* ✅ two columns */
-    gap: 25px; /* more breathing space */
-    padding: 20px;
-    max-width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px; /* space between charts */
+    justify-content: center;
+    align-items: stretch;
+    padding: 20px 40px;
+    max-width: 1800px; /* makes it nicely centered on wide screens */
+    margin: auto;
     box-sizing: border-box;
   }
 
-  /* 🖼️ Chart iframe style */
+  /* 🖼️ Chart styling */
   .chart-grid iframe {
     width: 100%;
-    height: 500px; /* ✅ increased height for full-size display */
+    height: 600px; /* ✅ taller chart for better visibility */
     border: none;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    overflow: hidden; /* removes scrollbars */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
   }
 
-  /* 📱 Responsive: 1 chart per row on mobile */
-  @media (max-width: 1800px) {
+  /* 📱 Responsive: one chart per row on smaller screens */
+  @media (max-width: 1000px) {
     .chart-grid {
       grid-template-columns: 1fr;
+      padding: 10px 20px;
     }
 
     .chart-grid iframe {
-      height: 400px; /* smaller on small screens */
+      height: 500px;
     }
   }
+</style>
 </style>
 
 
@@ -1126,6 +1131,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
