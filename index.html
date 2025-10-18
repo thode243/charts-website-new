@@ -291,41 +291,14 @@
   </div>
 
 <style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .tabcontent {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-  }
-
-  /* ✅ Flexible chart grid — charts stacked vertically, full width */
-  .chart-grid4 {
-    display: flex;
-    flex-direction: column;
-    gap: 5px; /* optional small space between charts */
-    width: 200vw;
-    margin: 0;
-    padding: 0;
-  }
-
   .chart-grid4 iframe {
-    width: 100%;      /* full width */
+    width: 100%;      /* full width of container */
     height: 500px;    /* fixed height */
-    border: none;
-    overflow: hidden; /* removes scrollbars */
-  }
-
-  /* 📱 Responsive: adjust height if needed on small screens */
-  @media (max-width: 1000px) {
-    .chart-grid4 iframe {
-      height: 450px;
-    }
-  }
+    border: none;     /* no border */
+    overflow: hidden; /* no scrollbars */
+}
+</style>
+  
 </style>
 
 
@@ -1131,6 +1104,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
