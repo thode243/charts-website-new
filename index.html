@@ -834,9 +834,8 @@ document.getElementById("defaultOpen").click();
   </div>
 </div>
   -->
-    <!-- ✅ Chart 10 -->
-  
- !-- ✅ Chart 10 -->
+    
+  <!-- ✅ Chart 10 -->
 <div id="chart10" class="tabcontent">
   <h2>Nifty Trend Charts</h2>
 
@@ -846,7 +845,7 @@ document.getElementById("defaultOpen").click();
     <button onclick="toggleAll(false)">Deselect All</button>
   </div>
 
-   <div id="chartContainer"></div>
+  <div id="chartContainer" class="responsive-grid"></div>
 </div>
 
 <script>
@@ -906,12 +905,10 @@ document.getElementById("defaultOpen").click();
   const container = document.getElementById('chartContainer');
 
   chartUrls.forEach((url, index) => {
-    const strike = index + 1; // can be replaced with actual strike value
-
+    const strike = index + 1;
     const chartDiv = document.createElement('div');
     chartDiv.className = 'chart-wrapper';
 
-    // Checkbox
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.id = 'chart_' + strike;
@@ -922,73 +919,72 @@ document.getElementById("defaultOpen").click();
     label.htmlFor = 'chart_' + strike;
     label.textContent = 'Chart ' + strike;
 
-    // Iframe
     const iframe = document.createElement('iframe');
     iframe.id = `strike${strike}`;
-    iframe.src = url; // or `${baseURL}${oid}`
+    iframe.src = url;
+    iframe.loading = "lazy";
     iframe.style.width = "100%";
-    iframe.style.height = "400px";
+    iframe.style.height = "300px";
     iframe.style.border = "1px solid #ccc";
     iframe.style.overflow = "hidden";
-    iframe.style.boxSizing = "border-box";
-    iframe.scrolling = "no"; 
+    iframe.scrolling = "no";
 
-    // Individual buttons for this chart
     const controls = document.createElement('div');
     controls.className = 'chart-controls';
     
     const btnRefresh = document.createElement('button');
-    btnRefresh.id = 'button' + strike + '_refresh';
-    btnRefresh.textContent = 'Refresh ' + strike;
-    btnRefresh.onclick = () => {
-      iframe.src = iframe.src; // simple refresh
-    };
+    btnRefresh.textContent = 'Refresh';
+    btnRefresh.onclick = () => { iframe.src = iframe.src; };
 
     const btnHide = document.createElement('button');
-    btnHide.id = 'button' + strike + '_hide';
-    btnHide.textContent = 'Hide ' + strike;
+    btnHide.textContent = 'Hide';
     btnHide.onclick = () => {
       iframe.style.display = 'none';
       checkbox.checked = false;
     };
 
     const btnShow = document.createElement('button');
-    btnShow.id = 'button' + strike + '_show';
-    btnShow.textContent = 'Show ' + strike;
+    btnShow.textContent = 'Show';
     btnShow.onclick = () => {
       iframe.style.display = 'block';
       checkbox.checked = true;
     };
 
-    controls.appendChild(btnRefresh);
-    controls.appendChild(btnHide);
-    controls.appendChild(btnShow);
-
-    // Append everything
-    chartDiv.appendChild(checkbox);
-    chartDiv.appendChild(label);
-    chartDiv.appendChild(controls);
-    chartDiv.appendChild(iframe);
+    controls.append(btnRefresh, btnHide, btnShow);
+    chartDiv.append(checkbox, label, controls, iframe);
     container.appendChild(chartDiv);
   });
 
-  // Toggle individual chart
   function toggleChart(strike) {
     const cb = document.getElementById('chart_' + strike);
     const iframe = document.getElementById('strike' + strike);
     iframe.style.display = cb.checked ? 'block' : 'none';
   }
+
+  function toggleAll(show) {
+    const checkboxes = document.querySelectorAll('#chartContainer input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+      cb.checked = show;
+      const id = cb.id.split('_')[1];
+      toggleChart(id);
+    });
+  }
 </script>
 
 <style>
-  .chart-wrapper {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+  .responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    align-items: start;
   }
 
-  .chart-wrapper input[type="checkbox"] {
-    margin-right: 5px;
+  .chart-wrapper {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
   }
 
   .chart-controls {
@@ -996,8 +992,8 @@ document.getElementById("defaultOpen").click();
   }
 
   .chart-controls button {
-    margin-right: 5px;
-    padding: 5px 10px;
+    margin-right: 4px;
+    padding: 4px 8px;
     cursor: pointer;
   }
 </style>
@@ -1107,6 +1103,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
