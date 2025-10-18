@@ -291,31 +291,44 @@
   </div>
 
 <style>
-  /* 📊 Tight grid — 2 charts per row, no gap */
-  .chart-grid4 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px; /* almost no space between charts */
+  /* 📊 Full-width grid — 2 charts per row, no gap */
+  body, html {
+    margin: 0;
     padding: 0;
-    margin: 0 auto;
-    width: 98vw; /* use almost full screen width */
     box-sizing: border-box;
   }
 
-  /* 🖼️ Charts: wide and neat */
+  .tabcontent {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+  }
+
+  .chart-grid4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 per row */
+    gap: 0; /* no space between charts */
+    width: 100vw; /* full window width */
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 🖼️ Charts: full width, fixed height */
   .chart-grid4 iframe {
     width: 100%;
-    height: 500px; /* same height */
+    height: 500px;
     border: none;
-    border-radius: 0;
     overflow: hidden;
   }
 
-  /* 📱 Responsive: one per row on smaller screens */
+  /* 📱 Responsive: 1 chart per row on small screens */
   @media (max-width: 1000px) {
     .chart-grid4 {
       grid-template-columns: 1fr;
-      width: 100%;
+    }
+
+    .chart-grid4 iframe {
+      height: 450px;
     }
   }
 </style>
@@ -1123,6 +1136,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
