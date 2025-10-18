@@ -276,31 +276,112 @@
   <!-- ✅ Chart 4 -->
 <div id="chart4" class="tabcontent">
   <h2>OI-Amount Chart</h2>
-  <div class="iframe-grid">
 
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=134367014&format=interactive" class="oi-amount-frame1"></iframe>
-
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1679063422&format=interactive" class="oi-amount-frame1"></iframe>
-
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1355325851&format=interactive" class="oi-amount-frame1"></iframe>
-
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=58612295&format=interactive" class="oi-amount-frame1"></iframe>
-    
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=768675277&format=interactive" class="oi-amount-frame1"></iframe>
-
-      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1503965889&format=interactive" class="oi-amount-frame1"></iframe>
-
-    <!--
-
-    
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1928745938&format=interactive" class="oi-amount-frame"></iframe>
-    
-  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=617087337&format=interactive" class="oi-amount-frame"></iframe>
-
--->
- 
+  <div id="oiChartContainer" class="responsive-grid"></div>
 </div>
-</div>
+
+<script>
+  const oiChartUrls = [
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=134367014&format=interactive",
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1679063422&format=interactive",
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1355325851&format=interactive",
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=58612295&format=interactive",
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=768675277&format=interactive",
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1503965889&format=interactive"
+  ];
+
+  const container = document.getElementById('oiChartContainer');
+
+  oiChartUrls.forEach((url, index) => {
+    const chartNum = index + 1;
+
+    const chartDiv = document.createElement('div');
+    chartDiv.className = 'chart-wrapper';
+
+    // Checkbox
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = 'oiChart_' + chartNum;
+    checkbox.checked = true;
+    checkbox.onchange = () => toggleOiChart(chartNum);
+
+    const label = document.createElement('label');
+    label.htmlFor = 'oiChart_' + chartNum;
+    label.textContent = 'Chart ' + chartNum;
+
+    // Iframe
+    const iframe = document.createElement('iframe');
+    iframe.id = `oiChartFrame${chartNum}`;
+    iframe.src = url;
+    iframe.loading = "lazy";
+    iframe.style.width = "100%";
+    iframe.style.height = "300px";
+    iframe.style.border = "1px solid #ccc";
+    iframe.scrolling = "no";
+
+    // Controls
+    const controls = document.createElement('div');
+    controls.className = 'chart-controls';
+
+    const btnRefresh = document.createElement('button');
+    btnRefresh.textContent = 'Refresh';
+    btnRefresh.onclick = () => { iframe.src = iframe.src; };
+
+    const btnHide = document.createElement('button');
+    btnHide.textContent = 'Hide';
+    btnHide.onclick = () => {
+      iframe.style.display = 'none';
+      checkbox.checked = false;
+    };
+
+    const btnShow = document.createElement('button');
+    btnShow.textContent = 'Show';
+    btnShow.onclick = () => {
+      iframe.style.display = 'block';
+      checkbox.checked = true;
+    };
+
+    controls.append(btnRefresh, btnHide, btnShow);
+
+    chartDiv.append(checkbox, label, controls, iframe);
+    container.appendChild(chartDiv);
+  });
+
+  function toggleOiChart(num) {
+    const cb = document.getElementById('oiChart_' + num);
+    const iframe = document.getElementById('oiChartFrame' + num);
+    iframe.style.display = cb.checked ? 'block' : 'none';
+  }
+</script>
+
+<style>
+  /* Reuse same styles as Chart 10 */
+  .responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    align-items: start;
+  }
+
+  .chart-wrapper {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+
+  .chart-controls {
+    margin: 5px 0;
+  }
+
+  .chart-controls button {
+    margin-right: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+</style>
+
 
   <!-- ✅ Chart 8 -->
 <div id="chart8" class="tabcontent">
@@ -1103,6 +1184,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
