@@ -288,11 +288,12 @@
   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?oid=1503965889&format=interactive"></iframe>
 
 </div>
+  </div>
 
 <style>
   .chart-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 charts per row */
+    grid-template-columns: repeat(2, 1fr); /* ✅ two charts per row */
     gap: 15px;
     padding: 10px;
   }
@@ -300,15 +301,16 @@
   .chart-grid iframe {
     width: 100%;
     height: 320px;
-    border: 1px solid #ccc;
+    border: none; /* ✅ removes scrollbars border */
     border-radius: 10px;
+    overflow: hidden; /* ✅ ensures no scrollbars */
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
   }
 
-  /* Optional: Responsive behavior for mobile */
+  /* ✅ Responsive: one chart per row on smaller screens */
   @media (max-width: 800px) {
     .chart-grid {
-      grid-template-columns: 1fr; /* stack on smaller screens */
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -1117,6 +1119,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
