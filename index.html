@@ -291,7 +291,6 @@
   </div>
 
 <style>
-  /* 📊 Full-width grid — 2 charts per row, no gap */
   body, html {
     margin: 0;
     padding: 0;
@@ -304,29 +303,25 @@
     width: 100vw;
   }
 
+  /* ✅ Flexible chart grid — charts stacked vertically, full width */
   .chart-grid4 {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 per row */
-    gap: 0; /* no space between charts */
-    width: 100vw; /* full window width */
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* optional small space between charts */
+    width: 100vw;
     margin: 0;
     padding: 0;
   }
 
-  /* 🖼️ Charts: full width, fixed height */
   .chart-grid4 iframe {
-    width: 100%;
-    height: 500px;
+    width: 100%;      /* full width */
+    height: 500px;    /* fixed height */
     border: none;
-    overflow: hidden;
+    overflow: hidden; /* removes scrollbars */
   }
 
-  /* 📱 Responsive: 1 chart per row on small screens */
+  /* 📱 Responsive: adjust height if needed on small screens */
   @media (max-width: 1000px) {
-    .chart-grid4 {
-      grid-template-columns: 1fr;
-    }
-
     .chart-grid4 iframe {
       height: 450px;
     }
@@ -1136,6 +1131,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
