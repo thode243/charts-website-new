@@ -292,11 +292,19 @@
 
 <style>
 .chart-grid4 iframe {
-    width: 1200px;      /* full width of container */
-    height: 700px;    /* fixed height */
-    border: none;     /* no border */
-    overflow: hidden; /* no scrollbars */
+    width: 100%;        /* full width of container */
+    max-width: 1200px;  /* max size on large screens */
+    height: 700px;
+    border: none;
+    border-radius: 10px;
+    display: block;
 }
+.chart-grid4 {
+    width: 100%;
+    max-width: 1200px;  /* same as iframe max-width */
+    margin: 0 auto;     /* center container */
+}
+
 </style>
   
 
@@ -1104,6 +1112,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
