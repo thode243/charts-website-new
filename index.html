@@ -211,6 +211,7 @@
   
   <button class="tablinks" onclick="openChart(event, 'chart2')">LTP VWAP diff-Amount Chart</button>
   <button class="tablinks" onclick="openChart(event, 'chart10')">Nifty Trend Charts</button>
+  <button class="tablinks" onclick="openChart(event, 'chart11')">Sticky charts</button>
   <!--
   <button class="tablinks" onclick="openChart(event, 'chart3')">Chng OI-VWAP diff</button>
 
@@ -948,7 +949,102 @@ document.getElementById("defaultOpen").click();
   }
 </style>
 
+<!-- ✅ Chart 11 -->
+<div id="chart11" class="tabcontent">
+  <h2>Sticky charts</h2>
 
+  <!-- Select/Deselect All Buttons -->
+  <div class="chart-controls">
+    <button onclick="toggleAll(true)">Select All</button>
+    <button onclick="toggleAll(false)">Deselect All</button>
+  </div>
+
+  <div id="chartContainer" class="responsive-grid"></div>
+</div>
+
+<script>
+  const chartUrls = [
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=111169045&format=interactive&widget=true", 
+     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=2120533255&format=interactive&widget=true", 
+     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=422483868&format=interactive&widget=true", 
+     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=929446995&format=interactive&widget=true", 
+     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=1218241067&format=interactive&widget=true", 
+     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=1171857034&format=interactive&widget=true", 
+  ];
+
+  const container = document.getElementById('chartContainer');
+
+  chartUrls.forEach((url, index) => {
+    const strike = index + 1;
+    const chartDiv = document.createElement('div');
+    chartDiv.className = 'chart-wrapper';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = 'chart_' + strike;
+    checkbox.checked = true;
+    checkbox.onchange = () => toggleChart(strike);
+
+    const label = document.createElement('label');
+    label.htmlFor = 'chart_' + strike;
+    label.textContent = 'Chart ' + strike;
+
+    const iframe = document.createElement('iframe');
+    iframe.id = `strike${strike}`;
+    iframe.src = url;
+    iframe.loading = "lazy";
+    iframe.style.width = "100%";
+    iframe.style.height = "300px";
+    iframe.style.border = "1px solid #ccc";
+    iframe.style.overflow = "hidden";
+    iframe.scrolling = "no";
+
+    chartDiv.append(checkbox, label, iframe);
+    container.appendChild(chartDiv);
+  });
+
+  function toggleChart(strike) {
+    const cb = document.getElementById('chart_' + strike);
+    const iframe = document.getElementById('strike' + strike);
+    iframe.style.display = cb.checked ? 'block' : 'none';
+  }
+
+  function toggleAll(show) {
+    const checkboxes = document.querySelectorAll('#chartContainer input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+      cb.checked = show;
+      const id = cb.id.split('_')[1];
+      toggleChart(id);
+    });
+  }
+</script>
+
+<style>
+  .responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    align-items: start;
+  }
+
+  .chart-wrapper {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+
+  .chart-controls {
+    margin: 5px 0;
+  }
+
+  .chart-controls button {
+    margin-right: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+</style>
 
 
 <script>
@@ -1053,6 +1149,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
