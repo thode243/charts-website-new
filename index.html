@@ -901,29 +901,7 @@ document.getElementById("defaultOpen").click();
     iframe.style.overflow = "hidden";
     iframe.scrolling = "no";
 
-    const controls = document.createElement('div');
-    controls.className = 'chart-controls';
-    
-    const btnRefresh = document.createElement('button');
-    btnRefresh.textContent = 'Refresh';
-    btnRefresh.onclick = () => { iframe.src = iframe.src; };
-
-    const btnHide = document.createElement('button');
-    btnHide.textContent = 'Hide';
-    btnHide.onclick = () => {
-      iframe.style.display = 'none';
-      checkbox.checked = false;
-    };
-
-    const btnShow = document.createElement('button');
-    btnShow.textContent = 'Show';
-    btnShow.onclick = () => {
-      iframe.style.display = 'block';
-      checkbox.checked = true;
-    };
-
-    controls.append(btnRefresh, btnHide, btnShow);
-    chartDiv.append(checkbox, label, controls, iframe);
+    chartDiv.append(checkbox, label, iframe);
     container.appendChild(chartDiv);
   });
 
@@ -1075,6 +1053,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
