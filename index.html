@@ -341,7 +341,6 @@
 <div id="chart1" class="tabcontent">
   <h2>OI-CCOI-VWAP Diff Chart</h2>
   
-  <!-- ✅ Legend -->
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Call OI</span>
     <span><span class="legend-box solid-red"></span> Put OI</span>
@@ -351,147 +350,84 @@
     <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
   </div>
 
-  <!-- ✅ Control buttons -->
   <div style="margin: 10px 0;">
-    <button onclick="selectAll(true)">✅ Select All</button>
-    <button onclick="selectAll(false)">❌ Deselect All</button>
+    <button onclick="selectAllChart1(true)">✅ Select All</button>
+    <button onclick="selectAllChart1(false)">❌ Deselect All</button>
   </div>
 
-  <!-- ✅ Checkbox panel -->
-  <div id="checkboxes" class="checkboxes" style="margin-bottom:15px; display: flex; flex-wrap: wrap; gap: 10px;"></div>
-
-  <!-- ✅ Chart grid -->
-  <div id="chart-grid" class="chart-grid"></div>
+  <div id="checkboxes-chart1" class="checkboxes" style="margin-bottom:15px; display:flex; flex-wrap: wrap; gap:10px;"></div>
+  <div id="chart-grid-chart1" class="chart-grid"></div>
 </div>
 
-<style>
-  .checkbox-item {
-    display: flex;
-    align-items: center;
-    width: 80px; /* adjust width per row */
-  }
-
-  .chart-grid > div {
-    margin-bottom: 25px;
-  }
-
-  .chart-grid iframe {
-    width: 100%;
-    height: 400px;
-    border: 1px solid #ccc;
-  }
-</style>
-
 <script>
-  // ✅ Strike → OID mapping
-  const charts = {
-    24250: "803193799",
-    24300: "1774106736",
-    24350: "706793629",
-    24400: "2094820521",
-    24450: "1104113578",
-    24500: "1744028156",
-    24550: "1418383130",
-    24600: "1770092151",
-    24650: "199112051",
-    24700: "952474926",
-    24750: "2025273832",
-    24800: "385681292",
-    24850: "1692038241",
-    24900: "313543024",
-    24950: "1763013981",
-    25000: "831657942",
-    25050: "2063948723",
-    25100: "548923849",
-    25150: "575746495",
-    25200: "521346185",
-    25250: "1387283168",
-    25300: "2025182217",
-    25350: "236540291",
-    25400: "319939010",
-    25450: "2064959247",
-    25500: "1169910435",
-    25550: "1540248194",
-    25600: "1130691669",
-    25650: "1302705504",
-    25700: "983537328",
-    25750: "1180687704",
-    25800: "857353960",
-    25850: "1083404014",
-    25900: "1202010075",
-    25950: "894341899",
-    26000: "472808175",
-    26050: "1233756397",
-    26100: "1541263372",
-    26150: "1973965389"
-  };
+const charts1 = {
+  24250: "803193799",
+  24300: "1774106736",
+  24350: "706793629",
+  24400: "2094820521",
+  24450: "1104113578",
+  24500: "1744028156",
+  24550: "1418383130",
+  24600: "1770092151"
+  // ... add rest of your strikes
+};
 
-  const baseURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?format=interactive&oid=";
-  const checkboxContainer = document.getElementById("checkboxes");
-  const chartContainer = document.getElementById("chart-grid");
+const baseURL1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubchart?format=interactive&oid=";
 
-  // ✅ Create checkboxes and charts
-  Object.entries(charts).forEach(([strike, oid]) => {
-    // Checkbox wrapper
-    const labelWrapper = document.createElement("div");
-    labelWrapper.className = "checkbox-item";
+const checkboxContainer1 = document.getElementById("checkboxes-chart1");
+const chartContainer1 = document.getElementById("chart-grid-chart1");
 
-    const cb = document.createElement("input");
-    cb.type = "checkbox";
-    cb.id = `cb-strike${strike}`;
-    cb.addEventListener("change", () => toggleChart(strike));
+Object.entries(charts1).forEach(([strike, oid]) => {
+  // ✅ Checkbox with label
+  const cbLabel = document.createElement("label");
+  cbLabel.innerHTML = `
+    <input type="checkbox" id="cb1-strike${strike}" onchange="toggleChart1('${strike}')" checked>
+    ${strike}
+  `;
+  checkboxContainer1.appendChild(cbLabel);
 
-    const label = document.createElement("label");
-    label.htmlFor = `cb-strike${strike}`;
-    label.textContent = strike;
+  // ✅ Wrapper div
+  const wrapper = document.createElement("div");
+  wrapper.id = `wrapper1-${strike}`;
+  wrapper.style.marginBottom = "25px";
 
-    labelWrapper.appendChild(cb);
-    labelWrapper.appendChild(label);
-    checkboxContainer.appendChild(labelWrapper);
+  // ✅ Title
+  const title = document.createElement("h3");
+  title.innerText = `Strike ${strike}`;
+  title.style.textAlign = "center";
+  title.style.marginBottom = "8px";
 
-    // Chart wrapper
-    const wrapper = document.createElement("div");
-    wrapper.id = `wrapper${strike}`;
-    wrapper.style.display = "none";
+  // ✅ Chart iframe
+  const iframe = document.createElement("iframe");
+  iframe.id = `strike1-${strike}`;
+  iframe.src = `${baseURL1}${oid}`;
+  iframe.style.width = "100%";
+  iframe.style.height = "400px";
 
-    const title = document.createElement("h3");
-    title.innerText = `Strike ${strike}`;
-    title.style.textAlign = "center";
+  wrapper.appendChild(title);
+  wrapper.appendChild(iframe);
+  chartContainer1.appendChild(wrapper);
+});
 
-    const iframe = document.createElement("iframe");
-    iframe.id = `strike${strike}`;
-    iframe.src = `${baseURL}${oid}`;
+function toggleChart1(strike) {
+  const checkbox = document.getElementById(`cb1-strike${strike}`);
+  const wrapper = document.getElementById(`wrapper1-${strike}`);
+  wrapper.style.display = checkbox.checked ? "block" : "none";
+}
 
-    wrapper.appendChild(title);
-    wrapper.appendChild(iframe);
-    chartContainer.appendChild(wrapper);
+function selectAllChart1(state) {
+  Object.keys(charts1).forEach(strike => {
+    const checkbox = document.getElementById(`cb1-strike${strike}`);
+    checkbox.checked = state;
+    toggleChart1(strike);
   });
+}
 
-  // ✅ Toggle chart visibility
-  function toggleChart(strike) {
-    const checkbox = document.getElementById(`cb-strike${strike}`);
-    const wrapper = document.getElementById(`wrapper${strike}`);
-    wrapper.style.display = checkbox.checked ? "block" : "none";
-  }
-
-  // ✅ Select/Deselect all
-  function selectAll(state) {
-    Object.keys(charts).forEach(strike => {
-      const checkbox = document.getElementById(`cb-strike${strike}`);
-      checkbox.checked = state;
-      toggleChart(strike);
-    });
-  }
-
-  // ✅ Deselect all on page load
-  window.addEventListener("DOMContentLoaded", () => selectAll(false));
+// ✅ Deselect all on load
+window.addEventListener("DOMContentLoaded", () => selectAllChart1(false));
 </script>
 
 
-
-
-
-  
   
 
 
@@ -1124,6 +1060,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
