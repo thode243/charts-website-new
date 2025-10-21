@@ -337,6 +337,7 @@
 
   
 <!-- ✅ Chart 1 -->
+  <!-- ✅ Chart 1 -->
 <div id="chart1" class="tabcontent">
   <h2>OI-CCOI-VWAP Diff Chart</h2>
   
@@ -415,12 +416,19 @@
   // ✅ Create checkboxes and charts
   Object.entries(charts).forEach(([strike, oid]) => {
     // Checkbox
-    const cbLabel = document.createElement("label");
-    cbLabel.innerHTML = `
-      <input type="checkbox" id="cb-strike${strike}" onchange="toggleChart('${strike}')">
-      ${strike}
-    `;
-    checkboxContainer.appendChild(cbLabel);
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.id = `cb-strike${strike}`;
+    cb.addEventListener("change", () => toggleChart(strike)); // ✅ event binding instead of inline JS
+
+    const label = document.createElement("label");
+    label.htmlFor = `cb-strike${strike}`;
+    label.textContent = strike;
+
+    const labelWrapper = document.createElement("div");
+    labelWrapper.appendChild(cb);
+    labelWrapper.appendChild(label);
+    checkboxContainer.appendChild(labelWrapper);
 
     // Wrapper div
     const wrapper = document.createElement("div");
@@ -446,7 +454,7 @@
     chartContainer.appendChild(wrapper);
   });
 
-  // ✅ Toggle wrapper visibility
+  // ✅ Toggle wrapper visibility (made global)
   function toggleChart(strike) {
     const checkbox = document.getElementById(`cb-strike${strike}`);
     const wrapper = document.getElementById(`wrapper${strike}`);
@@ -467,6 +475,7 @@
     selectAll(false);
   });
 </script>
+
 
 
 
@@ -1103,6 +1112,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
