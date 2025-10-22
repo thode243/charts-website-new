@@ -304,21 +304,28 @@
   </div>
 
 <style>
-.chart-grid4 iframe {
-    width: 100%;        /* full width of container */
-    max-width: 1600px;  /* max size on large screens */
-    height: 800px;
-    border: none;
-    border-radius: 10px;
-    display: block;
-}
+/* ✅ Grid layout for 2 charts per row */
 .chart-grid4 {
-    width: 100%;
-    max-width: 1600px;  /* same as iframe max-width */
-    margin: 0 auto;     /* center container */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* two equal columns */
+  gap: 20px; /* spacing between charts */
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  align-items: start;
 }
 
+/* ✅ Equal width & height for all iframes */
+.chart-grid4 iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;  /* maintains consistent height based on width */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #fff;
+}
 </style>
+
   
 
 
@@ -1096,6 +1103,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
