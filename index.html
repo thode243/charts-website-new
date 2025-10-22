@@ -304,28 +304,24 @@
   </div>
 
 <style>
-<style>
-/* ✅ Grid layout for 2 charts per row */
+/* ✅ Grid layout for Chart 4 (2 per row) */
 .chart-grid4 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* two equal columns */
-  gap: 20px; /* spacing between charts */
+  grid-template-columns: repeat(2, 1fr); /* 2 charts per row */
+  gap: 20px; /* space between charts */
   width: 100%;
-  max-width: 1800px;
+  max-width: 1800px; /* overall page width */
   margin: 0 auto;
   align-items: start;
 }
 
-/* ✅ Equal width & height for all iframes */
 .chart-grid4 iframe {
   width: 100%;
-  aspect-ratio: 16 / 9;  /* maintains consistent height based on width */
+  aspect-ratio: 16 / 9; /* auto height based on width */
   border: none;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  background: #fff;
 }
-</style>
 
 </style>
 
@@ -1106,6 +1102,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
