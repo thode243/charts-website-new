@@ -1033,16 +1033,16 @@ document.getElementById("defaultOpen").click();
 </script>
 
 <style>
-  /* ✅ Chart 11 specific styling */
-  .responsive-grid11 {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    align-items: start;
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-  }
+  /* ✅ Responsive grid for Chart 11 */
+.responsive-grid11 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 15px;
+  align-items: start;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+}
 
   .chart-wrapper11 {
     background: #fff;
@@ -1081,7 +1081,7 @@ document.getElementById("defaultOpen").click();
 <div id="chart12" class="tabcontent">
   <h2>Sticky charts</h2>
  
- <div class="chart-grid11">
+ <div class="chart-grid12">
   
  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=111169045&format=interactive"></iframe>
     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=2120533255&format=interactive"></iframe>
@@ -1093,19 +1093,26 @@ document.getElementById("defaultOpen").click();
   </div>
 
 <style>
-.chart-grid12 iframe {
-    width: 100%;        /* full width of container */
-    max-width: 1600px;  /* max size on large screens */
-    height: 800px;
-    border: none;
-    border-radius: 10px;
-    display: block;
-}
+
+
+/* ✅ Responsive grid for Chart 12 */
 .chart-grid12 {
-    width: 100%;
-    max-width: 1600px;  /* same as iframe max-width */
-    margin: 0 auto;     /* center container */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 15px;
+  align-items: start;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
 }
+
+.chart-grid12 iframe {
+  width: 100%;
+  height: 800px;
+  border: none;
+  border-radius: 10px;
+}
+
 
 </style>
 
@@ -1214,4 +1221,5 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
