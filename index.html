@@ -950,11 +950,10 @@ document.getElementById("defaultOpen").click();
 </style>
 
 <!-- ✅ Chart 11 -->
-  <!-- ✅ Chart 11 -->
+<!-- ✅ Chart 11 -->
 <div id="chart11" class="tabcontent">
-  <h2>Sticky Charts</h2>
+  <h2>Sticky charts</h2>
 
-  <!-- Select/Deselect All Buttons -->
   <div class="chart-controls">
     <button onclick="toggleAll(true)">Select All</button>
     <button onclick="toggleAll(false)">Deselect All</button>
@@ -973,55 +972,52 @@ document.getElementById("defaultOpen").click();
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=1171857034&format=interactive"
   ];
 
-  const container = document.getElementById('chartContainer11');
+  const container = document.getElementById("chartContainer11");
 
-  // ✅ Create chart blocks
-  chartUrls.forEach((url, index) => {
-    const strike = index + 1;
-    const chartDiv = document.createElement('div');
-    chartDiv.className = 'chart-wrapper';
+  chartUrls.forEach((url, i) => {
+    const n = i + 1;
+    const wrap = document.createElement("div");
+    wrap.className = "chart-wrapper";
 
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = 'chart11_' + strike;
-    checkbox.checked = true;
-    checkbox.onchange = () => toggleChart(strike);
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.id = `chart11_${n}`;
+    cb.checked = true;
+    cb.onchange = () => toggleChart(n);
 
-    const label = document.createElement('label');
-    label.htmlFor = 'chart11_' + strike;
-    label.textContent = 'Chart ' + strike;
+    const label = document.createElement("label");
+    label.htmlFor = `chart11_${n}`;
+    label.textContent = "Chart " + n;
 
-    const iframe = document.createElement('iframe');
-    iframe.id = `strike11_${strike}`;
-    iframe.src = url;
-    iframe.loading = "lazy";
-    iframe.style.width = "100%";
-    iframe.style.height = "300px";
-    iframe.style.border = "1px solid #ccc";
-    iframe.scrolling = "no";
+    const frame = document.createElement("iframe");
+    frame.id = `strike11_${n}`;
+    frame.src = url;
+    frame.loading = "lazy";
+    frame.style.width = "100%";
+    frame.style.height = "300px";
+    frame.style.border = "1px solid #ccc";
+    frame.scrolling = "no";
 
-    chartDiv.append(checkbox, label, iframe);
-    container.appendChild(chartDiv);
+    wrap.append(cb, label, frame);
+    container.appendChild(wrap);
   });
 
-  // ✅ Toggle individual chart
-  function toggleChart(strike) {
-    const cb = document.getElementById('chart11_' + strike);
-    const iframe = document.getElementById('strike11_' + strike);
-    iframe.style.display = cb.checked ? 'block' : 'none';
+  function toggleChart(n) {
+    const cb = document.getElementById(`chart11_${n}`);
+    const frame = document.getElementById(`strike11_${n}`);
+    frame.style.display = cb.checked ? "block" : "none";
   }
 
-  // ✅ Select/Deselect all charts
   function toggleAll(show) {
-    const checkboxes = document.querySelectorAll('#chartContainer11 input[type="checkbox"]');
-    checkboxes.forEach(cb => {
+    const boxes = document.querySelectorAll("#chartContainer11 input[type='checkbox']");
+    boxes.forEach(cb => {
       cb.checked = show;
-      const id = cb.id.split('_')[1];
-      toggleChart(id);
+      const n = cb.id.split("_")[1];
+      toggleChart(n);
     });
   }
 
-  // ✅ Initialize (show all charts)
+  // Show all initially
   chartUrls.forEach((_, i) => toggleChart(i + 1));
 </script>
 
@@ -1032,7 +1028,6 @@ document.getElementById("defaultOpen").click();
     gap: 15px;
     align-items: start;
   }
-
   .chart-wrapper {
     background: #fff;
     border: 1px solid #ddd;
@@ -1040,11 +1035,9 @@ document.getElementById("defaultOpen").click();
     border-radius: 10px;
     box-shadow: 0 0 4px rgba(0,0,0,0.1);
   }
-
   .chart-controls {
     margin: 5px 0;
   }
-
   .chart-controls button {
     margin-right: 4px;
     padding: 4px 8px;
@@ -1053,11 +1046,11 @@ document.getElementById("defaultOpen").click();
     background: #f5f5f5;
     border-radius: 5px;
   }
-
   .chart-controls button:hover {
     background: #e0e0e0;
   }
 </style>
+
 
 
 
@@ -1163,6 +1156,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
