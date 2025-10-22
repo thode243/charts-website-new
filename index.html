@@ -209,10 +209,10 @@
   <button class="tablinks" onclick="openChart(event, 'chart8')">LTP - VWAP Diff data</button>
   <button class="tablinks" onclick="openChart(event, 'chart7')">Stocks</button>  
   
-  <button class="tablinks" onclick="openChart(event, 'chart2')">LTP VWAP diff-Amount Chart</button>
+ 
   <button class="tablinks" onclick="openChart(event, 'chart10')">Nifty Trend Charts</button>
-  <button class="tablinks" onclick="openChart(event, 'chart11')">Sticky charts</button>
-  <button class="tablinks" onclick="openChart(event, 'chart12')">Sticky charts1</button>
+    <button class="tablinks" onclick="openChart(event, 'chart12')">Sticky charts</button>
+   <button class="tablinks" onclick="openChart(event, 'chart2')">LTP VWAP diff-Amount Chart</button>
   <!--
   <button class="tablinks" onclick="openChart(event, 'chart3')">Chng OI-VWAP diff</button>
 
@@ -486,137 +486,6 @@ window.addEventListener("DOMContentLoaded", () => selectAllChart1(false));
 
   
 
-
-<!-- ✅ Chart 2 -->
-<!-- ✅ Chart 2 -->
-<div id="chart2" class="tabcontent">
-  <h2>LTP VWAP diff-Amount Chart</h2>
-
-  <!-- ✅ Legend -->
-  <div class="legend">
-    <span><span class="legend-box solid-blue"></span> Call Amount</span>
-    <span><span class="legend-box solid-red"></span> Put Amount</span>
-    <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
-    <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
-  </div>
-  
-  <!-- ✅ Control buttons -->
-  <div style="margin: 10px 0;">
-    <button onclick="selectAllChart('chart2', true)">✅ Select All</button>
-    <button onclick="selectAllChart('chart2', false)">❌ Deselect All</button>
-  </div>
-
-  <!-- ✅ Auto checkbox panel -->
-  <div id="checkboxes-chart2" class="checkboxes" style="margin-bottom:15px;"></div>
-
-  <!-- ✅ Auto chart grid -->
-  <div id="chart-grid-chart2" class="chart-grid"></div>
-</div>
-
-<script>
-  const charts2 = {
-  
-  // 25650: "857231349",
-  
-};
-
-
-  const baseURL2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?format=interactive&oid=";      
-
-  const checkboxContainer2 = document.getElementById("checkboxes-chart2");
-  const chartContainer2 = document.getElementById("chart-grid-chart2");
-
-  Object.entries(charts2).forEach(([strike, oid]) => {
-    // ✅ Checkbox
-    const cbLabel = document.createElement("label");
-    cbLabel.innerHTML = `
-      <input type="checkbox" id="cb2-strike${strike}" onchange="toggleChart2('${strike}')" checked>
-      ${strike}
-    `;
-    checkboxContainer2.appendChild(cbLabel);
-
-    // ✅ Wrapper div
-    const wrapper = document.createElement("div");
-    wrapper.id = `wrapper2-${strike}`;
-    wrapper.style.marginBottom = "25px";
-
-    // ✅ Title
-    const title = document.createElement("h3");
-    title.innerText = `Strike ${strike}`;
-    title.style.textAlign = "center";
-    title.style.marginBottom = "8px";
-
-    // ✅ Chart iframe
-    const iframe = document.createElement("iframe");
-    iframe.id = `strike2-${strike}`;
-    iframe.src = `${baseURL2}${oid}`;
-    iframe.style.width = "100%";
-    iframe.style.height = "400px";
-
-    // ✅ Append title + chart to wrapper
-    wrapper.appendChild(title);
-    wrapper.appendChild(iframe);
-
-    // ✅ Append wrapper to grid
-    chartContainer2.appendChild(wrapper);
-  });
-
-  function toggleChart2(strike) {
-    const checkbox = document.getElementById(`cb2-strike${strike}`);
-    const wrapper = document.getElementById(`wrapper2-${strike}`);
-    wrapper.style.display = checkbox.checked ? "block" : "none";
-  }
-
-  function selectAllChart(chartId, state) {
-    const chartKeys = Object.keys(charts2);
-    chartKeys.forEach(strike => {
-      const checkbox = document.getElementById(`cb2-strike${strike}`);
-      checkbox.checked = state;
-      toggleChart2(strike);
-    });
-  }
-
-  // ✅ On page load, deselect everything by default
-window.addEventListener("DOMContentLoaded", () => {
-  // Deselect all for chart group 1
-  if (typeof charts !== 'undefined') {
-    selectAll(false);
-  }
-
-  // Deselect all for chart group 2
-  if (typeof charts2 !== 'undefined') {
-    selectAllChart('chart2', false);
-  }
-});
-</script>
-
-
-  
-  <!--
-  <div class="chart-grid">
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1175382163&format=interactive"></iframe>
-  
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1922749249&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=705483333&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=904483877&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1539030600&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=645980446&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1388626122&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=2045742962&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=468254650&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1397756855&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=252469178&format=interactive"></iframe>
-  
-
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1093129059&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=797108407&format=interactive"></iframe>
-
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=2055600685&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1255982845&format=interactive"></iframe>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=520024954&format=interactive"></iframe>
-
-  -->
-  
 
 
   
@@ -951,136 +820,12 @@ document.getElementById("defaultOpen").click();
   }
 </style>
 
-  <!-- ✅ Chart 11 -->
-<div id="chart11" class="tabcontent">
-  <h2>Sticky Charts</h2>
-
-  <!-- ✅ Buttons -->
-  <div class="chart-controls11">
-    <button onclick="toggleAll11(true)">Select All</button>
-    <button onclick="toggleAll11(false)">Deselect All</button>
-  </div>
-
-  <!-- ✅ Container for charts -->
-  <div id="chartContainer11" class="responsive-grid11"></div>
-</div>
-
-<script>
-  // ✅ Chart 11 URLs
-  const chartUrls11 = [
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=111169045&format=interactive",
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=2120533255&format=interactive",
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=422483868&format=interactive",
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=929446995&format=interactive",
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=1218241067&format=interactive",
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubchart?oid=1171857034&format=interactive"
-  ];
-
-  const container11 = document.getElementById('chartContainer11');
-
-  // ✅ Dynamically create charts for Chart 11
-  chartUrls11.forEach((url, index) => {
-    const strike = index + 1;
-    const chartDiv = document.createElement('div');
-    chartDiv.className = 'chart-wrapper11';
-
-    // Checkbox
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = 'chart11_' + strike;
-    checkbox.checked = true;
-    checkbox.onchange = () => toggleChart11(strike);
-
-    // Label
-    const label = document.createElement('label');
-    label.htmlFor = 'chart11_' + strike;
-    label.textContent = 'Chart ' + strike;
-
-    // Iframe
-    const iframe = document.createElement('iframe');
-    iframe.id = `strike11_${strike}`;
-    iframe.src = url;
-    iframe.loading = "lazy";
-    iframe.style.width = "100%";
-    iframe.style.height = "800px";
-    iframe.style.border = "none";
-    iframe.style.borderRadius = "10px";
-    iframe.scrolling = "no";
-
-    // Combine
-    chartDiv.append(checkbox, label, iframe);
-    container11.appendChild(chartDiv);
-  });
-
-  // ✅ Toggle individual chart
-  function toggleChart11(strike) {
-    const cb = document.getElementById('chart11_' + strike);
-    const iframe = document.getElementById('strike11_' + strike);
-    iframe.style.display = cb.checked ? 'block' : 'none';
-  }
-
-  // ✅ Select / Deselect all charts
-  function toggleAll11(show) {
-    const checkboxes = document.querySelectorAll('#chartContainer11 input[type="checkbox"]');
-    checkboxes.forEach(cb => {
-      cb.checked = show;
-      const id = cb.id.split('_')[1];
-      toggleChart11(id);
-    });
-  }
-
-  // ✅ Initialize all charts visible
-  chartUrls11.forEach((_, i) => toggleChart11(i + 1));
-</script>
-
-<style>
-  /* ✅ Responsive grid for Chart 11 */
-.responsive-grid11 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 15px;
-  align-items: start;
-  width: 100%;
-  max-width: 550px;
-  margin: 0 auto;
-}
-
-  .chart-wrapper11 {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 8px;
-    border-radius: 10px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.1);
-  }
-
-  .chart-controls11 {
-    margin: 10px 0;
-    text-align: center;
-  }
-
-  .chart-controls11 button {
-    margin: 0 5px;
-    padding: 6px 10px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    background: #f5f5f5;
-    border-radius: 5px;
-  }
-
-  .chart-controls11 button:hover {
-    background: #e0e0e0;
-  }
-
-  label {
-    margin-left: 5px;
-    font-weight: 500;
-  }
-</style>
+ 
 
 <!-- ✅ Chart 12 -->
 <!-- ✅ Chart 12 -->
 <div id="chart12" class="tabcontent">
-  <h2>Sticky charts1</h2>
+  <h2>Sticky charts</h2>
  
  <div class="chart-grid12">
   
@@ -1112,6 +857,138 @@ document.getElementById("defaultOpen").click();
 }
 </style>
 
+
+  
+<!-- ✅ Chart 2 -->
+<!-- ✅ Chart 2 -->
+<div id="chart2" class="tabcontent">
+  <h2>LTP VWAP diff-Amount Chart</h2>
+
+  <!-- ✅ Legend -->
+  <div class="legend">
+    <span><span class="legend-box solid-blue"></span> Call Amount</span>
+    <span><span class="legend-box solid-red"></span> Put Amount</span>
+    <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
+    <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
+  </div>
+  
+  <!-- ✅ Control buttons -->
+  <div style="margin: 10px 0;">
+    <button onclick="selectAllChart('chart2', true)">✅ Select All</button>
+    <button onclick="selectAllChart('chart2', false)">❌ Deselect All</button>
+  </div>
+
+  <!-- ✅ Auto checkbox panel -->
+  <div id="checkboxes-chart2" class="checkboxes" style="margin-bottom:15px;"></div>
+
+  <!-- ✅ Auto chart grid -->
+  <div id="chart-grid-chart2" class="chart-grid"></div>
+</div>
+
+<script>
+  const charts2 = {
+  
+  // 25650: "857231349",
+  
+};
+
+
+  const baseURL2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?format=interactive&oid=";      
+
+  const checkboxContainer2 = document.getElementById("checkboxes-chart2");
+  const chartContainer2 = document.getElementById("chart-grid-chart2");
+
+  Object.entries(charts2).forEach(([strike, oid]) => {
+    // ✅ Checkbox
+    const cbLabel = document.createElement("label");
+    cbLabel.innerHTML = `
+      <input type="checkbox" id="cb2-strike${strike}" onchange="toggleChart2('${strike}')" checked>
+      ${strike}
+    `;
+    checkboxContainer2.appendChild(cbLabel);
+
+    // ✅ Wrapper div
+    const wrapper = document.createElement("div");
+    wrapper.id = `wrapper2-${strike}`;
+    wrapper.style.marginBottom = "25px";
+
+    // ✅ Title
+    const title = document.createElement("h3");
+    title.innerText = `Strike ${strike}`;
+    title.style.textAlign = "center";
+    title.style.marginBottom = "8px";
+
+    // ✅ Chart iframe
+    const iframe = document.createElement("iframe");
+    iframe.id = `strike2-${strike}`;
+    iframe.src = `${baseURL2}${oid}`;
+    iframe.style.width = "100%";
+    iframe.style.height = "400px";
+
+    // ✅ Append title + chart to wrapper
+    wrapper.appendChild(title);
+    wrapper.appendChild(iframe);
+
+    // ✅ Append wrapper to grid
+    chartContainer2.appendChild(wrapper);
+  });
+
+  function toggleChart2(strike) {
+    const checkbox = document.getElementById(`cb2-strike${strike}`);
+    const wrapper = document.getElementById(`wrapper2-${strike}`);
+    wrapper.style.display = checkbox.checked ? "block" : "none";
+  }
+
+  function selectAllChart(chartId, state) {
+    const chartKeys = Object.keys(charts2);
+    chartKeys.forEach(strike => {
+      const checkbox = document.getElementById(`cb2-strike${strike}`);
+      checkbox.checked = state;
+      toggleChart2(strike);
+    });
+  }
+
+  // ✅ On page load, deselect everything by default
+window.addEventListener("DOMContentLoaded", () => {
+  // Deselect all for chart group 1
+  if (typeof charts !== 'undefined') {
+    selectAll(false);
+  }
+
+  // Deselect all for chart group 2
+  if (typeof charts2 !== 'undefined') {
+    selectAllChart('chart2', false);
+  }
+});
+</script>
+
+
+  
+  <!--
+  <div class="chart-grid">
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1175382163&format=interactive"></iframe>
+  
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1922749249&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=705483333&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=904483877&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1539030600&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=645980446&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1388626122&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=2045742962&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=468254650&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1397756855&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=252469178&format=interactive"></iframe>
+  
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1093129059&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=797108407&format=interactive"></iframe>
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=2055600685&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=1255982845&format=interactive"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=520024954&format=interactive"></iframe>
+
+  -->
+  
 
 
 
@@ -1217,6 +1094,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
