@@ -285,7 +285,7 @@
 
   
 <!-- ✅ Chart 4 -->
-<div id="chart4" class="tabcontent4">
+<div id="chart4" class="tabcontent">
   <h2>OI-Amount Chart</h2>
 
   <div class="chart-grid4">
@@ -304,18 +304,8 @@
   </div>
 
 <style>
-/* ✅ Tabcontent4 Layout */
-.tabcontent4 {
-  display: block;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-/* ✅ Grid for iframe4 charts */
-.iframe4 {
+/* ✅ Chart 4 custom layout (overrides global iframe styles) */
+#chart4 .chart-grid4 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
   gap: 25px;
@@ -325,39 +315,36 @@
   align-items: stretch;
 }
 
-/* ✅ Enlarged charts */
-.iframe4 iframe {
-  width: 100% !important;
-  height: 620px !important;
+/* ✅ Bigger charts with no scrollbars */
+#chart4 iframe {
+  width: 100% !important;        /* overrides 550px max-width */
+  height: 620px !important;      /* taller for full chart */
   border: none;
   border-radius: 12px;
   overflow: hidden;
-  scrollbar-width: none;
+  scrollbar-width: none;         /* hide Firefox scrollbars */
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* ✅ Hide scrollbars */
-.iframe4 iframe::-webkit-scrollbar {
+/* ✅ Hide Chrome/Safari scrollbars */
+#chart4 iframe::-webkit-scrollbar {
   display: none;
 }
 
-/* ✅ Hover effect */
-.iframe4 iframe:hover {
+/* ✅ Hover animation */
+#chart4 iframe:hover {
   transform: scale(1.02);
   transition: all 0.25s ease-in-out;
 }
 
-/* ✅ Responsive */
+/* ✅ Responsive: adjust height on smaller screens */
 @media (max-width: 1200px) {
-  .iframe4 iframe { height: 500px !important; }
+  #chart4 iframe { height: 500px !important; }
 }
 @media (max-width: 768px) {
-  .iframe4 iframe { height: 420px !important; }
+  #chart4 iframe { height: 420px !important; }
 }
 </style>
-
-  
-
 
 
 
@@ -1137,6 +1124,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
