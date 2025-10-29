@@ -205,7 +205,7 @@
 <div class="tab">
   <button class="tablinks" onclick="openChart(event, 'chart1')" id="defaultOpen">OI-CCOI-VWAP Diff Chart</button>
     <button class="tablinks" onclick="openChart(event, 'chart6')">Data</button>
-  <button class="tablinks" onclick="openChart(event, 'chart4')">OI-Amount</button>
+  <button class="tablinks" onclick="openChart(event, 'chart4')">OI-Amount Chart</button>
   <button class="tablinks" onclick="openChart(event, 'chart8')">LTP - VWAP Diff data</button>
   <button class="tablinks" onclick="openChart(event, 'chart7')">Stocks</button>  
   
@@ -304,25 +304,40 @@
   </div>
 
 <style>
-/* ✅ Grid layout for Chart 4 (2 per row) */
+/* ✅ Responsive enlarged grid layout for Chart 4 */
 .chart-grid4 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 charts per row */
-  gap: 20px; /* space between charts */
-  width: 100%;
-  max-width: 1800px; /* overall page width */
+  grid-template-columns: repeat(auto-fit, minmax(700px, 1fr)); /* Auto adjust: 1–2 per row depending on width */
+  gap: 20px;
+  width: 95%;
+  max-width: 1800px;
   margin: 0 auto;
   align-items: start;
+  justify-content: center;
 }
 
+/* ✅ Enlarge and beautify iframes */
 .chart-grid4 iframe {
   width: 100%;
-  aspect-ratio: 16 / 9; /* auto height based on width */
+  height: 480px; /* Increased height */
   border: none;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* ✅ Add hover zoom effect for clarity */
+.chart-grid4 iframe:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* ✅ Mobile optimization */
+@media (max-width: 900px) {
+  .chart-grid4 iframe {
+    height: 400px;
+  }
+}
 </style>
 
   
@@ -1106,6 +1121,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
