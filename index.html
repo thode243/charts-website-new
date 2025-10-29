@@ -285,7 +285,7 @@
 
   
 <!-- ✅ Chart 4 -->
-<div id="chart4" class="tabcontent">
+<div id="chart4" class="tabcontent4">
   <h2>OI-Amount Chart</h2>
 
   <div class="chart-grid4">
@@ -304,39 +304,55 @@
   </div>
 
 <style>
-/* ✅ Responsive enlarged grid layout for Chart 4 */
-.chart-grid4 {
+/* ✅ Tabcontent4 Layout */
+.tabcontent4 {
+  display: block;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* ✅ Grid for iframe4 charts */
+.iframe4 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(700px, 1fr)); /* Auto adjust: 1–2 per row depending on width */
-  gap: 20px;
-  width: 95%;
-  max-width: 1800px;
+  grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
+  gap: 25px;
+  width: 96%;
+  max-width: 1900px;
   margin: 0 auto;
-  align-items: start;
-  justify-content: center;
+  align-items: stretch;
 }
 
-/* ✅ Enlarge and beautify iframes */
-.chart-grid4 iframe {
-  width: 100%;
-  height: 480px; /* Increased height */
+/* ✅ Enlarged charts */
+.iframe4 iframe {
+  width: 100% !important;
+  height: 620px !important;
   border: none;
-  border-radius: 14px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  scrollbar-width: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* ✅ Add hover zoom effect for clarity */
-.chart-grid4 iframe:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+/* ✅ Hide scrollbars */
+.iframe4 iframe::-webkit-scrollbar {
+  display: none;
 }
 
-/* ✅ Mobile optimization */
-@media (max-width: 900px) {
-  .chart-grid4 iframe {
-    height: 400px;
-  }
+/* ✅ Hover effect */
+.iframe4 iframe:hover {
+  transform: scale(1.02);
+  transition: all 0.25s ease-in-out;
+}
+
+/* ✅ Responsive */
+@media (max-width: 1200px) {
+  .iframe4 iframe { height: 500px !important; }
+}
+@media (max-width: 768px) {
+  .iframe4 iframe { height: 420px !important; }
 }
 </style>
 
@@ -1121,6 +1137,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
