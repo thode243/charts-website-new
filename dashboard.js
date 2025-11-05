@@ -23,7 +23,7 @@ const DATA = {
     {id:"lvd-data", name:"LVD Data", type:"sheets", urls:[
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubhtml?gid=1952424351&single=true",
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwdBNIekjQua_YjtFzp4hCVs7XUHN4UilhgNG_wZy2w-gfFZUds2hr7lyqqrctXDQxtk9wKp3gRz_-/pubhtml?gid=648250347&single=true",
-      "https://docs.google测.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=263796819&single=true",
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=263796819&single=true",
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=1094925548&single=true"
     ]},
     {id:"stocks", name:"Stocks", type:"sheets", urls:[
@@ -68,20 +68,24 @@ function buildNav() {
 function openTab(id) {
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.tab-btn[data-id="${id}"]`).classList.add('active');
+
+  // WRAPPER TO PREVENT SCROLL & MANAGE CONTENT
   let wrapper = document.getElementById('tabContentWrapper');
-if (!wrapper) {
-  wrapper = el('div', {id:'tabContentWrapper'});
-  document.getElementById('tabContent').appendChild(wrapper);
-}
-wrapper.innerHTML = '';
+  if (!wrapper) {
+    wrapper = el('div', {id:'tabContentWrapper'});
+    document.getElementById('tabContent').appendChild(wrapper);
+  }
+  wrapper.innerHTML = '';
 
   const tab = DATA.tabs.find(t=>t.id===id);
   if (!tab) return;
 
+  // Legend (if applicable)
   if (tab.id.includes('oi-ccoi') || tab.id.includes('lvd-amount')) {
-    content.appendChild(createLegend());
+    wrapper.appendChild(createLegend());
   }
 
+  // Controls for strike tabs
   if (tab.type === 'strike') {
     const ctrl = el('div', {class:'controls'});
     const selAll = el('button', {}, 'Select All');
@@ -89,13 +93,14 @@ wrapper.innerHTML = '';
     selAll.onclick = () => toggleAllStrikes(id, true);
     desAll.onclick = () => toggleAllStrikes(id, false);
     ctrl.append(selAll, desAll);
-    content.appendChild(ctrl);
+    wrapper.appendChild(ctrl);
   }
 
+  // Render tab body
   if (tab.type === 'grid') {
     const grid = el('div', {class:'chart-grid'});
     tab.oids.forEach(oid => grid.appendChild(createChartCard(oid)));
-    content.appendChild(grid);
+    wrapper.appendChild(grid);
   }
   else if (tab.type === 'strike') {
     const strikes = tab.strikes;
@@ -112,21 +117,24 @@ wrapper.innerHTML = '';
       card.id = `card-${id}-${strike}`;
       grid.appendChild(card);
     });
-    content.append(checkDiv, grid);
+    wrapper.appendChild(checkDiv);
+    wrapper.appendChild(grid);
   }
   else if (tab.type === 'sheets') {
     const grid = el('div', {style:'display:grid; gap:1rem; grid-template-columns:repeat(auto-fit, minmax(500px,1fr));'});
     tab.urls.forEach(url => {
       grid.appendChild(el('iframe', {src:url, class:'oi-amount-frame'}));
     });
-    content.appendChild(grid);
+    wrapper.appendChild(grid);
   }
 }
 
-/* Card */
+/* Chart Card */
 function createChartCard(oid, title = '') {
   const card = el('div', {class:'chart-card'});
-  if (title) card.appendChild(el('h3', {}, title));
+  if (title) {
+    card.appendChild(el('h3', {}, title));
+  }
   card.appendChild(el('iframe', {src: BASE_CHART+oid, loading:'lazy'}));
   return card;
 }
@@ -149,11 +157,13 @@ function createLegend() {
   return legend;
 }
 
-/* Strike Toggle */
+/* Strike Toggles */
 function toggleStrike(tabId, strike) {
   const cb = document.getElementById(`cb-${tabId}-${strike}`);
   const card = document.getElementById(`card-${tabId}-${strike}`);
-  card.style.display = cb.checked ? '' : 'none';
+  if (card) {
+    card.style.display = cb.checked ? '' : 'none';
+  }
 }
 function toggleAllStrikes(tabId, state) {
   document.querySelectorAll(`input[id^="cb-${tabId}-"]`).forEach(cb=>{
@@ -163,7 +173,7 @@ function toggleAllStrikes(tabId, state) {
   });
 }
 
-/* Refresh */
+/* Refresh Logic */
 let refreshTimer;
 function startRefresh(ms) {
   clearInterval(refreshTimer);
@@ -181,7 +191,7 @@ function isMarketOpen() {
 }
 function updateTime() {
   const opts = {weekday:'short', year:'numeric', month:'short', day:'numeric',
-                Fas:'2-digit', minute:'2-digit', second:'2-digit', hour12:true};
+                hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true};
   document.getElementById('lastUpdate').textContent = 
     `Last updated: ${new Date().toLocaleString('en-IN', opts)}`;
 }
