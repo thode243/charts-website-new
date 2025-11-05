@@ -97,3 +97,19 @@ body { font-family: system-ui, -apple-system, sans-serif; background:var(--bg); 
   .chart-card iframe { height:300px; }
   .oi-amount-frame { height:500px; }
 }
+/* DISABLE ALL SCROLLING & SCROLLBARS */
+.sticky-bar,
+#tabContent,
+#tabContentWrapper,
+.chart-grid,
+.oi-amount-frame,
+iframe {
+  overflow: hidden !important;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.sticky-bar::-webkit-scrollbar,
+#tabContent::-webkit-scrollbar,
+iframe::-webkit-scrollbar {
+  display: none !important;
+}
