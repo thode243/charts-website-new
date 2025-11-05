@@ -213,6 +213,7 @@
   <button class="tablinks" onclick="openChart(event, 'chart10')">Nifty Trend Charts</button>
     <button class="tablinks" onclick="openChart(event, 'chart12')">Sticky charts</button>
    <button class="tablinks" onclick="openChart(event, 'chart2')">LTP VWAP diff-Amount Chart</button>
+  <button class="tablinks" onclick="openChart(event, 'chart13')">AppSheet</button>
   <!--
   <button class="tablinks" onclick="openChart(event, 'chart3')">Chng OI-VWAP diff</button>
 
@@ -287,6 +288,44 @@
   }
 </style>
 
+
+  <!-- ✅ Chart 13 -->
+<div id="chart13" class="tabcontent">
+  <h2>AppSheet</h2>
+
+  <div class="sheet-container1">
+     <iframe 
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSGTwCzWLbbrZUWbAa0GbozgvHlvTD8oWeau15M9NepwzLRtGADrnb2KENAKLr057_rEacH0mExLJgp/pubhtml?gid=538734573&single=true"
+      class="oi-amount-frame">
+    </iframe>        
+    
+  </div>
+</div>
+
+<style>
+  /* Container to align frames side by side */
+  .sheet-container1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;              /* space between frames */
+  }
+
+  /* Adjust iframe size */
+  .oi-amount-frame {
+    width: 49%;             /* two side-by-side */
+    height: 600px;          /* adjust height as needed */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  /* Optional: Mobile responsiveness */
+  @media (max-width: 900px) {
+    .oi-amount-frame {
+      width: 100%;
+    }
+  }
+</style>
 
 
   
@@ -1130,6 +1169,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
