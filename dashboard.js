@@ -68,8 +68,12 @@ function buildNav() {
 function openTab(id) {
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.tab-btn[data-id="${id}"]`).classList.add('active');
-  const content = document.getElementById('tabContent');
-  content.innerHTML = '';
+  let wrapper = document.getElementById('tabContentWrapper');
+if (!wrapper) {
+  wrapper = el('div', {id:'tabContentWrapper'});
+  document.getElementById('tabContent').appendChild(wrapper);
+}
+wrapper.innerHTML = '';
 
   const tab = DATA.tabs.find(t=>t.id===id);
   if (!tab) return;
