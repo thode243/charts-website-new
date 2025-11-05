@@ -203,26 +203,26 @@
 
 <!-- ✅ Tabs -->
 <div class="tab">
-  <button class="tablinks" onclick="openChart(event, 'chart1')" id="defaultOpen">OI-CCOI-VWAP Diff Chart</button>
+  <button class="tablinks" onclick="openChart(event, 'chart1')" id="defaultOpen">OI-CCOI-LVD Chart</button>
     <button class="tablinks" onclick="openChart(event, 'chart6')">Data</button>
   <button class="tablinks" onclick="openChart(event, 'chart4')">OI-Amount Chart</button>
-  <button class="tablinks" onclick="openChart(event, 'chart8')">LTP - VWAP Diff data</button>
+  <button class="tablinks" onclick="openChart(event, 'chart8')">LVD Data</button>
   <button class="tablinks" onclick="openChart(event, 'chart7')">Stocks</button>  
   
  
   <button class="tablinks" onclick="openChart(event, 'chart10')">Nifty Trend Charts</button>
     <button class="tablinks" onclick="openChart(event, 'chart12')">Sticky charts</button>
-   <button class="tablinks" onclick="openChart(event, 'chart2')">LTP VWAP diff-Amount Chart</button>
+   <button class="tablinks" onclick="openChart(event, 'chart2')">LVD-Amount Chart</button>
   <button class="tablinks" onclick="openChart(event, 'chart13')">AppSheet</button>
   <!--
-  <button class="tablinks" onclick="openChart(event, 'chart3')">Chng OI-VWAP diff</button>
+  <button class="tablinks" onclick="openChart(event, 'chart3')">Chng OI-LVD diff</button>
 
    
   <button class="tablinks" onclick="openChart(event, 'chart5')">LTP_OI</button>
    
   
  
-  <button class="tablinks" onclick="openChart(event, 'chart9')">OI-CCOI-VWAP Diff Chart1</button>
+  <button class="tablinks" onclick="openChart(event, 'chart9')">OI-CCOI-LVD Chart1</button>
   -->
   </div>
 
@@ -367,7 +367,7 @@
 
   <!-- ✅ Chart 8 -->
 <div id="chart8" class="tabcontent">
-  <h2>LTP - VWAP Diff data</h2>
+  <h2>LVD Data</h2>
   <!--
   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=1765629037&single=true" class="oi-amount-frame1"></iframe>
   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Lvrxvflj_qRKt-eVIUlr3yltRJQgISwea-qRRDoI5tXMT3TFXiwy0pukbs6wjOfS1K_C9zNxtUra/pubhtml?gid=1555388559&single=true" class="oi-amount-frame1"></iframe>
@@ -397,15 +397,15 @@
 <!-- ✅ Chart 1 -->
 <!-- ✅ Chart 1 -->
 <div id="chart1" class="tabcontent">
-  <h2>OI-CCOI-VWAP Diff Chart</h2>
+  <h2>OI-CCOI-LVDChart</h2>
   
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Call OI</span>
     <span><span class="legend-box solid-red"></span> Put OI</span>
     <span><span class="legend-box dotted-blue"></span> Change OI - Call</span>
     <span><span class="legend-box dotted-red"></span> Change OI - Put</span>
-    <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
-    <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
+    <span><span class="legend-box light-green"></span> LTP - LVD(Call)</span>
+    <span><span class="legend-box light-red"></span> LTP - LVD(Put)</span>
   </div>
 
   <div style="margin: 10px 0;">
@@ -540,12 +540,12 @@ window.addEventListener("DOMContentLoaded", () => selectAllChart1(false));
 <!-- ✅ Chart 3 -->
   <!--
 <div id="chart3" class="tabcontent">
-  <h2>Change OI-VWAP Diff Chart</h2>
+  <h2>Change OI-LVDChart</h2>
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Change Call OI</span>
     <span><span class="legend-box solid-red"></span> Change Put OI</span>
-    <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
-    <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
+    <span><span class="legend-box light-green"></span> LTP - LVD(Call)</span>
+    <span><span class="legend-box light-red"></span> LTP - LVD(Put)</span>
   </div>
   <div class="chart-grid">
     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdKlNUiAKVlVSxDzsCRMxxCYhpmk7VhLZXN26GBsXnvlc7Oylqg6cIFBzsCIi_yg9Dw0apQjn4q68d/pubchart?oid=879867809&format=interactive"></iframe>
@@ -682,14 +682,14 @@ document.getElementById("defaultOpen").click();
   <!-- ✅ Chart 9 -->
     <!--
 <div id="chart9" class="tabcontent">
-  <h2>OI-CCOI-VWAP Diff Chart</h2>
+  <h2>OI-CCOI-LVDChart</h2>
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Call OI</span>
     <span><span class="legend-box solid-red"></span> Put OI</span>
     <span><span class="legend-box dotted-blue"></span> Change OI - Call</span>
     <span><span class="legend-box dotted-red"></span> Change OI - Put</span>
-    <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
-    <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
+    <span><span class="legend-box light-green"></span> LTP - LVD(Call)</span>
+    <span><span class="legend-box light-red"></span> LTP - LVD(Put)</span>
   </div>
   <div class="chart-grid">
     
@@ -909,14 +909,14 @@ document.getElementById("defaultOpen").click();
 <!-- ✅ Chart 2 -->
 <!-- ✅ Chart 2 -->
 <div id="chart2" class="tabcontent">
-  <h2>LTP VWAP diff-Amount Chart</h2>
+  <h2>LVD-Amount Chart</h2>
 
   <!-- ✅ Legend -->
   <div class="legend">
     <span><span class="legend-box solid-blue"></span> Call Amount</span>
     <span><span class="legend-box solid-red"></span> Put Amount</span>
-    <span><span class="legend-box light-green"></span> LTP - VWAP Diff (Call)</span>
-    <span><span class="legend-box light-red"></span> LTP - VWAP Diff (Put)</span>
+    <span><span class="legend-box light-green"></span> LTP - LVD(Call)</span>
+    <span><span class="legend-box light-red"></span> LTP - LVD(Put)</span>
   </div>
   
   <!-- ✅ Control buttons -->
@@ -1141,6 +1141,7 @@ let currentTab = 0;
 </script>
 </body>
 </html>
+
 
 
 
